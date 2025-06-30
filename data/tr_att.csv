@@ -1,0 +1,621 @@
+item,sentence,condition,head_num,attr_num,verb_num,attention_to_attractor,attention_to_head,model
+1,yöneticilerin aşçısı mutfakta sürekli zıpladılar,condition_a,sg,pl,pl,0.03518500551581383,0.05376002937555313,bert
+1,yöneticilerin aşçısı mutfakta sürekli zıpladı,condition_b,sg,pl,sg,0.0508555993437767,0.04986230656504631,bert
+1,yöneticinin aşçısı mutfakta sürekli zıpladılar,condition_c,sg,sg,pl,0.1390172392129898,0.04949919134378433,bert
+1,yöneticinin aşçısı mutfakta sürekli zıpladı,condition_d,sg,sg,sg,0.14777353405952454,0.04908699914813042,bert
+2,öğrencilerin ablası sınıfta birden bayıldılar,condition_a,sg,pl,pl,0.054836321622133255,0.1267644166946411,bert
+2,öğrencilerin ablası sınıfta birden bayıldı,condition_b,sg,pl,sg,0.0466991662979126,0.09795673191547394,bert
+2,öğrencinin ablası sınıfta birden bayıldılar,condition_c,sg,sg,pl,0.07466171681880951,0.11782222241163254,bert
+2,öğrencinin ablası sınıfta birden bayıldı,condition_d,sg,sg,sg,0.053716156631708145,0.09058967977762222,bert
+3,marangozların abisi atölyeden hızla uzaklaştılar,condition_a,sg,pl,pl,0.1508663147687912,0.08667710423469543,bert
+3,marangozların abisi atölyeden hızla uzaklaştı,condition_b,sg,pl,sg,0.13009504973888397,0.09211765229701996,bert
+3,marangozun abisi atölyeden hızla uzaklaştılar,condition_c,sg,sg,pl,0.15155154466629028,0.07612346112728119,bert
+3,marangozun abisi atölyeden hızla uzaklaştı,condition_d,sg,sg,sg,0.13914042711257935,0.08025988936424255,bert
+4,mahallelilerin emlakçısı aniden küstahça güldüler,condition_a,sg,pl,pl,0.07477889955043793,0.0866277813911438,bert
+4,mahallelilerin emlakçısı aniden küstahça güldü,condition_b,sg,pl,sg,0.08953411132097244,0.11090094596147537,bert
+4,mahallelinin emlakçısı aniden küstahça güldüler,condition_c,sg,sg,pl,0.08485867828130722,0.09286345541477203,bert
+4,mahallelinin emlakçısı aniden küstahça güldü,condition_d,sg,sg,sg,0.1051572859287262,0.119594506919384,bert
+5,kızların halası sabaha kadar ağladılar,condition_a,sg,pl,pl,0.04784257337450981,0.19005638360977173,bert
+5,kızların halası sabaha kadar ağladı,condition_b,sg,pl,sg,0.042976826429367065,0.1854158639907837,bert
+5,kızın halası sabaha kadar ağladılar,condition_c,sg,sg,pl,0.07150675356388092,0.19616243243217468,bert
+5,kızın halası sabaha kadar ağladı,condition_d,sg,sg,sg,0.053463827818632126,0.19968435168266296,bert
+6,damatların dayısı arada sırada sıkıldılar,condition_a,sg,pl,pl,0.16016149520874023,0.12057928740978241,bert
+6,damatların dayısı arada sırada sıkıldı,condition_b,sg,pl,sg,0.1713889241218567,0.10754548013210297,bert
+6,damatın dayısı arada sırada sıkıldılar,condition_c,sg,sg,pl,0.24522003531455994,0.11532574146986008,bert
+6,damatın dayısı arada sırada sıkıldı,condition_d,sg,sg,sg,0.24057364463806152,0.11117002367973328,bert
+7,doktorların çiçekçisi günden güne zayıfladılar,condition_a,sg,pl,pl,0.037242792546749115,0.17852267622947693,bert
+7,doktorların çiçekçisi günden güne zayıfladı,condition_b,sg,pl,sg,0.02124882861971855,0.13883578777313232,bert
+7,doktorun çiçekçisi günden güne zayıfladılar,condition_c,sg,sg,pl,0.10352640599012375,0.14098280668258667,bert
+7,doktorun çiçekçisi günden güne zayıfladı,condition_d,sg,sg,sg,0.06796950101852417,0.12293493747711182,bert
+8,stajyerlerin eniştesi geceden önce uyudular,condition_a,sg,pl,pl,0.11905118823051453,0.13698258996009827,bert
+8,stajyerlerin eniştesi geceden önce uyudu,condition_b,sg,pl,sg,0.11058385670185089,0.1124107763171196,bert
+8,stajyerin eniştesi geceden önce uyudular,condition_c,sg,sg,pl,0.14828330278396606,0.10295262932777405,bert
+8,stajyerin eniştesi geceden önce uyudu,condition_d,sg,sg,sg,0.1569150984287262,0.08731629699468613,bert
+9,aristokratların hizmetçisi yorgun argın yattılar,condition_a,sg,pl,pl,0.20195169746875763,0.11060253530740738,bert
+9,aristokratların hizmetçisi yorgun argın yattı,condition_b,sg,pl,sg,0.17734643816947937,0.11963631212711334,bert
+9,aristokratın hizmetçisi yorgun argın yattılar,condition_c,sg,sg,pl,0.20424246788024902,0.10187800228595734,bert
+9,aristokratın hizmetçisi yorgun argın yattı,condition_d,sg,sg,sg,0.1780051290988922,0.10956266522407532,bert
+10,konuşmacıların sunucusu olağanüstü hızlı koştular,condition_a,sg,pl,pl,0.37933462858200073,0.25985464453697205,bert
+10,konuşmacıların sunucusu olağanüstü hızlı koştu,condition_b,sg,pl,sg,0.4073464870452881,0.2280961275100708,bert
+10,konuşmacının sunucusu olağanüstü hızlı koştular,condition_c,sg,sg,pl,0.3446098268032074,0.2779499888420105,bert
+10,konuşmacının sunucusu olağanüstü hızlı koştu,condition_d,sg,sg,sg,0.4278239607810974,0.2500486373901367,bert
+11,psikiyatristlerin eczacısı aç susuz dolaştılar,condition_a,sg,pl,pl,0.11745068430900574,0.10591521859169006,bert
+11,psikiyatristlerin eczacısı aç susuz dolaştı,condition_b,sg,pl,sg,0.11149537563323975,0.10424366593360901,bert
+11,psikiyatristin eczacısı aç susuz dolaştılar,condition_c,sg,sg,pl,0.1944475769996643,0.09519116580486298,bert
+11,psikiyatristin eczacısı aç susuz dolaştı,condition_d,sg,sg,sg,0.18425363302230835,0.09378660470247269,bert
+12,politikacıların hocası adliyeden çabucak çıktılar,condition_a,sg,pl,pl,0.06245189532637596,0.06436837464570999,bert
+12,politikacıların hocası adliyeden çabucak çıktı,condition_b,sg,pl,sg,0.08772914111614227,0.06576506793498993,bert
+12,politikacının hocası adliyeden çabucak çıktılar,condition_c,sg,sg,pl,0.08577349036931992,0.05672604963183403,bert
+12,politikacının hocası adliyeden çabucak çıktı,condition_d,sg,sg,sg,0.12596750259399414,0.05809123441576958,bert
+13,hakimlerin çaycısı nedensiz yere kızdılar,condition_a,sg,pl,pl,0.1325342059135437,0.13148602843284607,bert
+13,hakimlerin çaycısı nedensiz yere kızdı,condition_b,sg,pl,sg,0.16692134737968445,0.13742826879024506,bert
+13,hakimin çaycısı nedensiz yere kızdılar,condition_c,sg,sg,pl,0.17719164490699768,0.10833033919334412,bert
+13,hakimin çaycısı nedensiz yere kızdı,condition_d,sg,sg,sg,0.2164376974105835,0.11807852238416672,bert
+14,oyuncuların hemşiresi etrafta amaçsızca gezdiler,condition_a,sg,pl,pl,0.07401703298091888,0.096153125166893,bert
+14,oyuncuların hemşiresi etrafta amaçsızca gezdi,condition_b,sg,pl,sg,0.09440102428197861,0.093978151679039,bert
+14,oyuncunun hemşiresi etrafta amaçsızca gezdiler,condition_c,sg,sg,pl,0.14588719606399536,0.09339971840381622,bert
+14,oyuncunun hemşiresi etrafta amaçsızca gezdi,condition_d,sg,sg,sg,0.17068922519683838,0.09150798618793488,bert
+15,öğretmenlerin müdiresi biraz önce aradılar,condition_a,sg,pl,pl,0.08412624150514603,0.3165666162967682,bert
+15,öğretmenlerin müdiresi biraz önce aradı,condition_b,sg,pl,sg,0.04135773703455925,0.18117424845695496,bert
+15,öğretmenin müdiresi biraz önce aradılar,condition_c,sg,sg,pl,0.09805494546890259,0.29816514253616333,bert
+15,öğretmenin müdiresi biraz önce aradı,condition_d,sg,sg,sg,0.036784578114748,0.17030805349349976,bert
+16,milyonerlerin terzisi tamamen gereksizce bağırdılar,condition_a,sg,pl,pl,0.11874843388795853,0.10334470123052597,bert
+16,milyonerlerin terzisi tamamen gereksizce bağırdı,condition_b,sg,pl,sg,0.14139731228351593,0.1007615178823471,bert
+16,milyonerin terzisi tamamen gereksizce bağırdılar,condition_c,sg,sg,pl,0.08711293339729309,0.07638177275657654,bert
+16,milyonerin terzisi tamamen gereksizce bağırdı,condition_d,sg,sg,sg,0.10065111517906189,0.08067543804645538,bert
+17,bebeklerin bakıcısı çok kibar davrandılar,condition_a,sg,pl,pl,0.13590745627880096,0.11210384964942932,bert
+17,bebeklerin bakıcısı çok kibar davrandı,condition_b,sg,pl,sg,0.1547277271747589,0.11867862939834595,bert
+17,bebeğin bakıcısı çok kibar davrandılar,condition_c,sg,sg,pl,0.09600169956684113,0.11459781229496002,bert
+17,bebeğin bakıcısı çok kibar davrandı,condition_d,sg,sg,sg,0.10765369236469269,0.12504470348358154,bert
+18,çocukların dadısı yüksek sesle konuştular,condition_a,sg,pl,pl,0.05937560647726059,0.21681836247444153,bert
+18,çocukların dadısı yüksek sesle konuştu,condition_b,sg,pl,sg,0.012930053286254406,0.10776301473379135,bert
+18,çocuğun dadısı yüksek sesle konuştular,condition_c,sg,sg,pl,0.12018343806266785,0.22095006704330444,bert
+18,çocuğun dadısı yüksek sesle konuştu,condition_d,sg,sg,sg,0.033056486397981644,0.1166631430387497,bert
+19,futbolcuların sürücüsü çok yavaş çalıştılar,condition_a,sg,pl,pl,0.006601482164114714,0.03140927106142044,bert
+19,futbolcuların sürücüsü çok yavaş çalıştı,condition_b,sg,pl,sg,0.006928601767867804,0.03205491229891777,bert
+19,futbolcunun sürücüsü çok yavaş çalıştılar,condition_c,sg,sg,pl,0.033912479877471924,0.045968279242515564,bert
+19,futbolcunun sürücüsü çok yavaş çalıştı,condition_d,sg,sg,sg,0.03359481319785118,0.04428962990641594,bert
+20,modacıların taksicisi saatlerce durmaksızın içtiler,condition_a,sg,pl,pl,0.07727450877428055,0.07129774242639542,bert
+20,modacıların taksicisi saatlerce durmaksızın içti,condition_b,sg,pl,sg,0.09382273256778717,0.10925663262605667,bert
+20,modacının taksicisi saatlerce durmaksızın içtiler,condition_c,sg,sg,pl,0.0834246426820755,0.07314890623092651,bert
+20,modacının taksicisi saatlerce durmaksızın içti,condition_d,sg,sg,sg,0.09019380807876587,0.11222998052835464,bert
+21,sanatçıların çalgıcısı feci bir şekilde öldüler,condition_a,sg,pl,pl,0.03709125146269798,0.21006576716899872,bert
+21,sanatçıların çalgıcısı feci bir şekilde öldü,condition_b,sg,pl,sg,0.010609691962599754,0.0903138592839241,bert
+21,sanatçının çalgıcısı feci bir şekilde öldüler,condition_c,sg,sg,pl,0.08591997623443604,0.20776832103729248,bert
+21,sanatçının çalgıcısı feci bir şekilde öldü,condition_d,sg,sg,sg,0.014679360203444958,0.09389317780733109,bert
+22,dedektiflerin dişçisi ilk kez çılgınca eğlendiler,condition_a,sg,pl,pl,0.05440891534090042,0.08615606278181076,bert
+22,dedektiflerin dişçisi ilk kez çılgınca eğlendi,condition_b,sg,pl,sg,0.06336627900600433,0.08641549199819565,bert
+22,dedektifin dişçisi ilk kez çılgınca eğlendiler,condition_c,sg,sg,pl,0.09726911038160324,0.07556705176830292,bert
+22,dedektifin dişçisi ilk kez çılgınca eğlendi,condition_d,sg,sg,sg,0.1036817878484726,0.07542862743139267,bert
+23,esnafların müşterisi şikayettten hemen sonra sustular,condition_a,sg,pl,pl,0.10557498782873154,0.08759179711341858,bert
+23,esnafların müşterisi şikayettten hemen sonra sustu,condition_b,sg,pl,sg,0.07753886282444,0.04820425063371658,bert
+23,esnafın müşterisi şikayettten hemen sonra sustular,condition_c,sg,sg,pl,0.13894465565681458,0.08496993780136108,bert
+23,esnafın müşterisi şikayettten hemen sonra sustu,condition_d,sg,sg,sg,0.11210903525352478,0.04802427813410759,bert
+24,şarkıcıların koruması her zamanki gibi geciktiler,condition_a,sg,pl,pl,0.10296425223350525,0.08179236948490143,bert
+24,şarkıcıların koruması her zamanki gibi gecikti,condition_b,sg,pl,sg,0.12048669159412384,0.08683811873197556,bert
+24,şarkıcının koruması her zamanki gibi geciktiler,condition_c,sg,sg,pl,0.1833280324935913,0.07880477607250214,bert
+24,şarkıcının koruması her zamanki gibi gecikti,condition_d,sg,sg,sg,0.20696833729743958,0.08598485589027405,bert
+25,göstericilerin izleyicisi akşama kadar sessizce oturdular,condition_a,sg,pl,pl,0.13246037065982819,0.10158305615186691,bert
+25,göstericilerin izleyicisi akşama kadar sessizce oturdu,condition_b,sg,pl,sg,0.050325069576501846,0.05530712008476257,bert
+25,göstericinin izleyicisi akşama kadar sessizce oturdular,condition_c,sg,sg,pl,0.1699136197566986,0.09952262789011002,bert
+25,göstericinin izleyicisi akşama kadar sessizce oturdu,condition_d,sg,sg,sg,0.058801524341106415,0.05404546856880188,bert
+26,cerrahların hastası akşamki gösteriden önce kaçtılar,condition_a,sg,pl,pl,0.19514942169189453,0.056683823466300964,bert
+26,cerrahların hastası akşamki gösteriden önce kaçtı,condition_b,sg,pl,sg,0.0627301037311554,0.03136316314339638,bert
+26,cerrahın hastası akşamki gösteriden önce kaçtılar,condition_c,sg,sg,pl,0.2859949469566345,0.054947808384895325,bert
+26,cerrahın hastası akşamki gösteriden önce kaçtı,condition_d,sg,sg,sg,0.08395577222108841,0.02829568088054657,bert
+27,dalgıçların annesi bile bile geç kaldılar,condition_a,sg,pl,pl,0.16379524767398834,0.02732768841087818,bert
+27,dalgıçların annesi bile bile geç kaldı,condition_b,sg,pl,sg,0.2307376116514206,0.021589329466223717,bert
+27,dalgıcın annesi bile bile geç kaldılar,condition_c,sg,sg,pl,0.12091957032680511,0.03233536332845688,bert
+27,dalgıcın annesi bile bile geç kaldı,condition_d,sg,sg,sg,0.14798490703105927,0.02200484462082386,bert
+28,fabrikatörlerin işçisi beklenmedik bir anda hastalandılar,condition_a,sg,pl,pl,0.2726968228816986,0.056660644710063934,bert
+28,fabrikatörlerin işçisi beklenmedik bir anda hastalandı,condition_b,sg,pl,sg,0.21084384620189667,0.046134695410728455,bert
+28,fabrikatörün işçisi beklenmedik bir anda hastalandılar,condition_c,sg,sg,pl,0.3319667875766754,0.056079551577568054,bert
+28,fabrikatörün işçisi beklenmedik bir anda hastalandı,condition_d,sg,sg,sg,0.24682040512561798,0.048125118017196655,bert
+29,komedyenlerin yardımcısı poyrazdan dolayı üşüdüler,condition_a,sg,pl,pl,0.15437832474708557,0.05889207124710083,bert
+29,komedyenlerin yardımcısı poyrazdan dolayı üşüdü,condition_b,sg,pl,sg,0.20605887472629547,0.08999362587928772,bert
+29,komedyenin yardımcısı poyrazdan dolayı üşüdüler,condition_c,sg,sg,pl,0.26430341601371765,0.06156579405069351,bert
+29,komedyenin yardımcısı poyrazdan dolayı üşüdü,condition_d,sg,sg,sg,0.39582929015159607,0.1030886173248291,bert
+30,şoförlerin yolcusu yemekten sonra yine acıktılar,condition_a,sg,pl,pl,0.08177578449249268,0.037322837859392166,bert
+30,şoförlerin yolcusu yemekten sonra yine acıktı,condition_b,sg,pl,sg,0.09085128456354141,0.03767452761530876,bert
+30,şoförün yolcusu yemekten sonra yine acıktılar,condition_c,sg,sg,pl,0.1345106065273285,0.03811927139759064,bert
+30,şoförün yolcusu yemekten sonra yine acıktı,condition_d,sg,sg,sg,0.15220403671264648,0.041012540459632874,bert
+31,mühendislerin kapıcısı erken ödemeden dolayı sevindiler,condition_a,sg,pl,pl,0.06263598799705505,0.09691780805587769,bert
+31,mühendislerin kapıcısı erken ödemeden dolayı sevindi,condition_b,sg,pl,sg,0.07780234515666962,0.11021726578474045,bert
+31,mühendisin kapıcısı erken ödemeden dolayı sevindiler,condition_c,sg,sg,pl,0.13618963956832886,0.09114508330821991,bert
+31,mühendisin kapıcısı erken ödemeden dolayı sevindi,condition_d,sg,sg,sg,0.1694193184375763,0.10072755068540573,bert
+32,pazarcıların nakliyecisi mesaiden hemen sonra uzandılar,condition_a,sg,pl,pl,0.1033957228064537,0.1663230061531067,bert
+32,pazarcıların nakliyecisi mesaiden hemen sonra uzandı,condition_b,sg,pl,sg,0.11546351760625839,0.18493995070457458,bert
+32,pazarcının nakliyecisi mesaiden hemen sonra uzandılar,condition_c,sg,sg,pl,0.1104942336678505,0.17027775943279266,bert
+32,pazarcının nakliyecisi mesaiden hemen sonra uzandı,condition_d,sg,sg,sg,0.12339338660240173,0.19073209166526794,bert
+33,oyuncuların eğitimcisi ilk denemede epey zorlandılar,condition_a,sg,pl,pl,0.04972913861274719,0.11822471767663956,bert
+33,oyuncuların eğitimcisi ilk denemede epey zorlandı,condition_b,sg,pl,sg,0.05214400961995125,0.1081133782863617,bert
+33,oyuncunun eğitimcisi ilk denemede epey zorlandılar,condition_c,sg,sg,pl,0.08416157215833664,0.12840603291988373,bert
+33,oyuncunun eğitimcisi ilk denemede epey zorlandı,condition_d,sg,sg,sg,0.09319974482059479,0.1160026416182518,bert
+34,mankenlerin modacısı geç bir vakitte kalktılar,condition_a,sg,pl,pl,0.11343748867511749,0.04390659183263779,bert
+34,mankenlerin modacısı geç bir vakitte kalktı,condition_b,sg,pl,sg,0.04189034551382065,0.02327350154519081,bert
+34,mankenin modacısı geç bir vakitte kalktılar,condition_c,sg,sg,pl,0.21058592200279236,0.03950328379869461,bert
+34,mankenin modacısı geç bir vakitte kalktı,condition_d,sg,sg,sg,0.08841308951377869,0.02090231515467167,bert
+35,konukların teyzesi müthiş bir ağrıyla uyandılar,condition_a,sg,pl,pl,0.1168595552444458,0.04674238711595535,bert
+35,konukların teyzesi müthiş bir ağrıyla uyandı,condition_b,sg,pl,sg,0.15841259062290192,0.05906183272600174,bert
+35,konuğun teyzesi müthiş bir ağrıyla uyandılar,condition_c,sg,sg,pl,0.15714821219444275,0.04035361483693123,bert
+35,konuğun teyzesi müthiş bir ağrıyla uyandı,condition_d,sg,sg,sg,0.2012740969657898,0.052691441029310226,bert
+36,oğlanların amcası boş bir caddede yürüdüler,condition_a,sg,pl,pl,0.09092541038990021,0.04378804564476013,bert
+36,oğlanların amcası boş bir caddede yürüdü,condition_b,sg,pl,sg,0.030323747545480728,0.018695197999477386,bert
+36,oğlanın amcası boş bir caddede yürüdüler,condition_c,sg,sg,pl,0.15820324420928955,0.0430460050702095,bert
+36,oğlanın amcası boş bir caddede yürüdü,condition_d,sg,sg,sg,0.044228412210941315,0.01721511408686638,bert
+37,avukatların komşusu toplantıdan sonra birden sarardılar,condition_a,sg,pl,pl,0.06152325123548508,0.044845905154943466,bert
+37,avukatların komşusu toplantıdan sonra birden sarardı,condition_b,sg,pl,sg,0.07552265375852585,0.05720371752977371,bert
+37,avukatın komşusu toplantıdan sonra birden sarardılar,condition_c,sg,sg,pl,0.08089949935674667,0.04490768536925316,bert
+37,avukatın komşusu toplantıdan sonra birden sarardı,condition_d,sg,sg,sg,0.09943753480911255,0.05828729271888733,bert
+38,ünlülerin falcısı yabancı bir ülkede kayboldular,condition_a,sg,pl,pl,0.12019015848636627,0.2174791842699051,bert
+38,ünlülerin falcısı yabancı bir ülkede kayboldu,condition_b,sg,pl,sg,0.08891117572784424,0.18036329746246338,bert
+38,ünlünün falcısı yabancı bir ülkede kayboldular,condition_c,sg,sg,pl,0.21319511532783508,0.19035206735134125,bert
+38,ünlünün falcısı yabancı bir ülkede kayboldu,condition_d,sg,sg,sg,0.141818568110466,0.17183314263820648,bert
+39,çiftçilerin bekçisi normalden çok yavaş gezindiler,condition_a,sg,pl,pl,0.04994594305753708,0.04215351119637489,bert
+39,çiftçilerin bekçisi normalden çok yavaş gezindi,condition_b,sg,pl,sg,0.06285640597343445,0.04722527414560318,bert
+39,çiftçinin bekçisi normalden çok yavaş gezindiler,condition_c,sg,sg,pl,0.06530151516199112,0.04569303244352341,bert
+39,çiftçinin bekçisi normalden çok yavaş gezindi,condition_d,sg,sg,sg,0.07729927450418472,0.05126580595970154,bert
+40,kadınların ninesi geçen seneye göre dinçleştiler,condition_a,sg,pl,pl,0.15701201558113098,0.17163632810115814,bert
+40,kadınların ninesi geçen seneye göre dinçleşti,condition_b,sg,pl,sg,0.12564581632614136,0.15178118646144867,bert
+40,kadının ninesi geçen seneye göre dinçleştiler,condition_c,sg,sg,pl,0.24876663088798523,0.1639792025089264,bert
+40,kadının ninesi geçen seneye göre dinçleşti,condition_d,sg,sg,sg,0.18533770740032196,0.1489955335855484,bert
+1,Şarkıcıların vokalisti sahnede sürekli zıpladılar,condition_a,sg,pl,pl,0.11120769381523132,0.19333530962467194,bert
+1,Şarkıcıların vokalisti sahnede sürekli zıpladı,condition_b,sg,pl,sg,0.12368258833885193,0.1779172122478485,bert
+1,Şarkıcının vokalisti sahnede sürekli zıpladılar,condition_c,sg,sg,pl,0.1636868268251419,0.19080913066864014,bert
+1,Şarkıcının vokalisti sahnede sürekli zıpladı,condition_d,sg,sg,sg,0.19599366188049316,0.1747843325138092,bert
+2,Öğrencilerin danışmanı sınıfta birden bayıldılar,condition_a,sg,pl,pl,0.08887729048728943,0.06413213163614273,bert
+2,Öğrencilerin danışmanı sınıfta birden bayıldı,condition_b,sg,pl,sg,0.07745110243558884,0.038257598876953125,bert
+2,Öğrencinin danışmanı sınıfta birden bayıldılar,condition_c,sg,sg,pl,0.2173088788986206,0.05518203601241112,bert
+2,Öğrencinin danışmanı sınıfta birden bayıldı,condition_d,sg,sg,sg,0.16603043675422668,0.02889402210712433,bert
+3,Ressamların rakibi atölyeden hızla uzaklaştılar,condition_a,sg,pl,pl,0.12020917236804962,0.12319581210613251,bert
+3,Ressamların rakibi atölyeden hızla uzaklaştı,condition_b,sg,pl,sg,0.11485517024993896,0.11614039540290833,bert
+3,Ressamın rakibi atölyeden hızla uzaklaştılar,condition_c,sg,sg,pl,0.14933423697948456,0.11508676409721375,bert
+3,Ressamın rakibi atölyeden hızla uzaklaştı,condition_d,sg,sg,sg,0.14700643718242645,0.10758253931999207,bert
+4,Subayların düşmanı aniden küstahça güldülar,condition_a,sg,pl,pl,0.1857253462076187,0.02793305367231369,bert
+4,Subayların düşmanı aniden küstahça güldü,condition_b,sg,pl,sg,0.0901222974061966,0.053832411766052246,bert
+4,Subayın düşmanı aniden küstahça güldülar,condition_c,sg,sg,pl,0.07131903618574142,0.038680076599121094,bert
+4,Subayın düşmanı aniden küstahça güldü,condition_d,sg,sg,sg,0.07604871690273285,0.06825004518032074,bert
+5,Müzisyenlerin hayranı sabaha kadar ağladılar,condition_a,sg,pl,pl,0.32464367151260376,0.03318629413843155,bert
+5,Müzisyenlerin hayranı sabaha kadar ağladı,condition_b,sg,pl,sg,0.37399008870124817,0.035879313945770264,bert
+5,Müzisyenin hayranı sabaha kadar ağladılar,condition_c,sg,sg,pl,0.3732868432998657,0.03012857586145401,bert
+5,Müzisyenin hayranı sabaha kadar ağladı,condition_d,sg,sg,sg,0.4124922454357147,0.03233111649751663,bert
+6,Borsacıların çalışanı arada sırada sıkıldılar,condition_a,sg,pl,pl,0.16710244119167328,0.06974776834249496,bert
+6,Borsacıların çalışanı arada sırada sıkıldı,condition_b,sg,pl,sg,0.11515963077545166,0.052153080701828,bert
+6,Borsacının çalışanı arada sırada sıkıldılar,condition_c,sg,sg,pl,0.28129610419273376,0.059288203716278076,bert
+6,Borsacının çalışanı arada sırada sıkıldı,condition_d,sg,sg,sg,0.19040921330451965,0.04713395982980728,bert
+7,Profesörlerin sekreteri günden güne zayıfladılar,condition_a,sg,pl,pl,0.06540915369987488,0.08125989139080048,bert
+7,Profesörlerin sekreteri günden güne zayıfladı,condition_b,sg,pl,sg,0.0723942369222641,0.07634368538856506,bert
+7,Profesörün sekreteri günden güne zayıfladılar,condition_c,sg,sg,pl,0.10768766701221466,0.08661173284053802,bert
+7,Profesörün sekreteri günden güne zayıfladı,condition_d,sg,sg,sg,0.12698158621788025,0.0848897248506546,bert
+8,Veterinerlerin asistanı geceden önce uyudular,condition_a,sg,pl,pl,0.0825565904378891,0.10218361765146255,bert
+8,Veterinerlerin asistanı geceden önce uyudu,condition_b,sg,pl,sg,0.10997740924358368,0.10469384491443634,bert
+8,Veterinerin asistanı geceden önce uyudular,condition_c,sg,sg,pl,0.13135254383087158,0.09551031142473221,bert
+8,Veterinerin asistanı geceden önce uyudu,condition_d,sg,sg,sg,0.1654997169971466,0.09688883274793625,bert
+9,Yönetmenlerin masörü yorgun argın yattılar,condition_a,sg,pl,pl,0.12365005910396576,0.11990232765674591,bert
+9,Yönetmenlerin masörü yorgun argın yattı,condition_b,sg,pl,sg,0.14502865076065063,0.10457015037536621,bert
+9,Yönetmenin masörü yorgun argın yattılar,condition_c,sg,sg,pl,0.21017004549503326,0.11372990906238556,bert
+9,Yönetmenin masörü yorgun argın yattı,condition_d,sg,sg,sg,0.2629764676094055,0.09684744477272034,bert
+10,Teknisyenlerin eğitmeni olağanüstü hızlı koştular,condition_a,sg,pl,pl,0.25010138750076294,0.2857428789138794,bert
+10,Teknisyenlerin eğitmeni olağanüstü hızlı koştu,condition_b,sg,pl,sg,0.2795763313770294,0.26994064450263977,bert
+10,Teknisyenin eğitmeni olağanüstü hızlı koştular,condition_c,sg,sg,pl,0.2028190791606903,0.2968755066394806,bert
+10,Teknisyenin eğitmeni olağanüstü hızlı koştu,condition_d,sg,sg,sg,0.2382073998451233,0.27051568031311035,bert
+11,Turistlerin rehberi aç susuz dolaştılar,condition_a,sg,pl,pl,0.08292888104915619,0.021587539464235306,bert
+11,Turistlerin rehberi aç susuz dolaştı,condition_b,sg,pl,sg,0.08218849450349808,0.025446448475122452,bert
+11,Turistin rehberi aç susuz dolaştılar,condition_c,sg,sg,pl,0.08298373967409134,0.021241266280412674,bert
+11,Turistin rehberi aç susuz dolaştı,condition_d,sg,sg,sg,0.0832137018442154,0.0264496561139822,bert
+12,Zanlıların şahidi adliyeden çabucak çıktılar,condition_a,sg,pl,pl,0.025749819353222847,0.02415921725332737,bert
+12,Zanlıların şahidi adliyeden çabucak çıktı,condition_b,sg,pl,sg,0.04035944491624832,0.03824082016944885,bert
+12,Zanlının şahidi adliyeden çabucak çıktılar,condition_c,sg,sg,pl,0.0246246587485075,0.02541845664381981,bert
+12,Zanlının şahidi adliyeden çabucak çıktı,condition_d,sg,sg,sg,0.03751397877931595,0.038829341530799866,bert
+13,Bursiyerlerin kefili nedensiz yere kızdılar,condition_a,sg,pl,pl,0.15873712301254272,0.06631900370121002,bert
+13,Bursiyerlerin kefili nedensiz yere kızdı,condition_b,sg,pl,sg,0.1745642125606537,0.04598013311624527,bert
+13,Bursiyerin kefili nedensiz yere kızdılar,condition_c,sg,sg,pl,0.24864637851715088,0.06087522953748703,bert
+13,Bursiyerin kefili nedensiz yere kızdı,condition_d,sg,sg,sg,0.280750572681427,0.04535272717475891,bert
+14,Futbolcuların kaptanı etrafta amaçsızca gezdilar,condition_a,sg,pl,pl,0.12136804312467575,0.05144445225596428,bert
+14,Futbolcuların kaptanı etrafta amaçsızca gezdi,condition_b,sg,pl,sg,0.0806119367480278,0.03632856532931328,bert
+14,Futbolcunun kaptanı etrafta amaçsızca gezdilar,condition_c,sg,sg,pl,0.14855052530765533,0.05198799446225166,bert
+14,Futbolcunun kaptanı etrafta amaçsızca gezdi,condition_d,sg,sg,sg,0.10027499496936798,0.03446647897362709,bert
+15,Yazarların editörü biraz önce aradılar,condition_a,sg,pl,pl,0.10804197192192078,0.08736681938171387,bert
+15,Yazarların editörü biraz önce aradı,condition_b,sg,pl,sg,0.08093876391649246,0.053826142102479935,bert
+15,Yazarın editörü biraz önce aradılar,condition_c,sg,sg,pl,0.27479231357574463,0.08434653282165527,bert
+15,Yazarın editörü biraz önce aradı,condition_d,sg,sg,sg,0.11252056807279587,0.050116557627916336,bert
+16,Askerlerin berberi tamamen gereksizce bağırdılar,condition_a,sg,pl,pl,0.12014520913362503,0.061186082661151886,bert
+16,Askerlerin berberi tamamen gereksizce bağırdı,condition_b,sg,pl,sg,0.14022618532180786,0.0740925520658493,bert
+16,Askerin berberi tamamen gereksizce bağırdılar,condition_c,sg,sg,pl,0.3049871325492859,0.05547657608985901,bert
+16,Askerin berberi tamamen gereksizce bağırdı,condition_d,sg,sg,sg,0.3611435294151306,0.06897880136966705,bert
+17,Yarışmacıların koçu çok kibar davrandılar,condition_a,sg,pl,pl,0.0782373696565628,0.08590082824230194,bert
+17,Yarışmacıların koçu çok kibar davrandı,condition_b,sg,pl,sg,0.0948304608464241,0.08311113715171814,bert
+17,Yarışmacının koçu çok kibar davrandılar,condition_c,sg,sg,pl,0.1012038141489029,0.08225219696760178,bert
+17,Yarışmacının koçu çok kibar davrandı,condition_d,sg,sg,sg,0.11865203827619553,0.08090441673994064,bert
+18,Sporcuların antrenörü yüksek sesle konuştular,condition_a,sg,pl,pl,0.150929793715477,0.07252460718154907,bert
+18,Sporcuların antrenörü yüksek sesle konuştu,condition_b,sg,pl,sg,0.05394908785820007,0.02539963647723198,bert
+18,Sporcunun antrenörü yüksek sesle konuştular,condition_c,sg,sg,pl,0.12048643082380295,0.08856329321861267,bert
+18,Sporcunun antrenörü yüksek sesle konuştu,condition_d,sg,sg,sg,0.04597438499331474,0.030380263924598694,bert
+19,Berberlerin çırağı çok yavaş çalıştılar,condition_a,sg,pl,pl,0.08725403249263763,0.09443279355764389,bert
+19,Berberlerin çırağı çok yavaş çalıştı,condition_b,sg,pl,sg,0.08810755610466003,0.10171574354171753,bert
+19,Berberin çırağı çok yavaş çalıştılar,condition_c,sg,sg,pl,0.14042946696281433,0.07924918830394745,bert
+19,Berberin çırağı çok yavaş çalıştı,condition_d,sg,sg,sg,0.14514952898025513,0.09202131628990173,bert
+20,Muhabirlerin patronu saatlerce durmaksızın içtilar,condition_a,sg,pl,pl,0.17429205775260925,0.04564817249774933,bert
+20,Muhabirlerin patronu saatlerce durmaksızın içti,condition_b,sg,pl,sg,0.15716245770454407,0.04411406069993973,bert
+20,Muhabirin patronu saatlerce durmaksızın içtilar,condition_c,sg,sg,pl,0.11269975453615189,0.04658276587724686,bert
+20,Muhabirin patronu saatlerce durmaksızın içti,condition_d,sg,sg,sg,0.10690626502037048,0.038453109562397,bert
+21,Oyuncuların dublörü feci bir şekilde öldülar,condition_a,sg,pl,pl,0.15365289151668549,0.10535220056772232,bert
+21,Oyuncuların dublörü feci bir şekilde öldü,condition_b,sg,pl,sg,0.08530931174755096,0.0809282585978508,bert
+21,Oyuncunun dublörü feci bir şekilde öldülar,condition_c,sg,sg,pl,0.2866445481777191,0.0998879224061966,bert
+21,Oyuncunun dublörü feci bir şekilde öldü,condition_d,sg,sg,sg,0.15880517661571503,0.07782353460788727,bert
+22,Sunucuların kuaförü ilk kez çılgınca eğlendilar,condition_a,sg,pl,pl,0.29350483417510986,0.11431440711021423,bert
+22,Sunucuların kuaförü ilk kez çılgınca eğlendi,condition_b,sg,pl,sg,0.22359588742256165,0.08045396208763123,bert
+22,Sunucunun kuaförü ilk kez çılgınca eğlendilar,condition_c,sg,sg,pl,0.1859646439552307,0.12004755437374115,bert
+22,Sunucunun kuaförü ilk kez çılgınca eğlendi,condition_d,sg,sg,sg,0.11849730461835861,0.0756085216999054,bert
+23,Garsonların şefi şikayetten hemen sonra sustular,condition_a,sg,pl,pl,0.1807243376970291,0.05439183861017227,bert
+23,Garsonların şefi şikayetten hemen sonra sustu,condition_b,sg,pl,sg,0.17852094769477844,0.04932399094104767,bert
+23,Garsonun şefi şikayetten hemen sonra sustular,condition_c,sg,sg,pl,0.2105979323387146,0.05566125363111496,bert
+23,Garsonun şefi şikayetten hemen sonra sustu,condition_d,sg,sg,sg,0.20635640621185303,0.05397333577275276,bert
+24,Noterlerin şoförü her zamanki gibi geciktilar,condition_a,sg,pl,pl,0.17181183397769928,0.05381996929645538,bert
+24,Noterlerin şoförü her zamanki gibi gecikti,condition_b,sg,pl,sg,0.12551088631153107,0.03308761864900589,bert
+24,Noterin şoförü her zamanki gibi geciktilar,condition_c,sg,sg,pl,0.1688496619462967,0.042261723428964615,bert
+24,Noterin şoförü her zamanki gibi gecikti,condition_d,sg,sg,sg,0.12908214330673218,0.02691606990993023,bert
+25,Tenisçilerin terapisti akşama kadar sessizce oturdular,condition_a,sg,pl,pl,0.12536722421646118,0.16403639316558838,bert
+25,Tenisçilerin terapisti akşama kadar sessizce oturdu,condition_b,sg,pl,sg,0.046907246112823486,0.08031024038791656,bert
+25,Tenisçinin terapisti akşama kadar sessizce oturdular,condition_c,sg,sg,pl,0.15973849594593048,0.1600753217935562,bert
+25,Tenisçinin terapisti akşama kadar sessizce oturdu,condition_d,sg,sg,sg,0.05343647673726082,0.07931365072727203,bert
+26,Mankenlerin menajeri akşamki gösteriden önce kaçtılar,condition_a,sg,pl,pl,0.11526468396186829,0.10902690142393112,bert
+26,Mankenlerin menajeri akşamki gösteriden önce kaçtı,condition_b,sg,pl,sg,0.056210197508335114,0.09881662577390671,bert
+26,Mankenin menajeri akşamki gösteriden önce kaçtılar,condition_c,sg,sg,pl,0.10879438370466232,0.09735316038131714,bert
+26,Mankenin menajeri akşamki gösteriden önce kaçtı,condition_d,sg,sg,sg,0.044994838535785675,0.07049983739852905,bert
+27,Hastaların cerrahı bile bile geç kaldılar,condition_a,sg,pl,pl,0.0849466621875763,0.06511563062667847,bert
+27,Hastaların cerrahı bile bile geç kaldı,condition_b,sg,pl,sg,0.09572882950305939,0.06294599175453186,bert
+27,Hastanın cerrahı bile bile geç kaldılar,condition_c,sg,sg,pl,0.11816465854644775,0.06161503866314888,bert
+27,Hastanın cerrahı bile bile geç kaldı,condition_d,sg,sg,sg,0.2023431360721588,0.06199536472558975,bert
+28,Mimarların elemanı beklenmedik bir anda hastalandılar,condition_a,sg,pl,pl,0.14152556657791138,0.1363275945186615,bert
+28,Mimarların elemanı beklenmedik bir anda hastalandı,condition_b,sg,pl,sg,0.12338528037071228,0.13204430043697357,bert
+28,Mimarın elemanı beklenmedik bir anda hastalandılar,condition_c,sg,sg,pl,0.23639675974845886,0.12089885771274567,bert
+28,Mimarın elemanı beklenmedik bir anda hastalandı,condition_d,sg,sg,sg,0.18261399865150452,0.12320273369550705,bert
+29,İzcilerin lideri sert rüzgardan dolayı üşüdülar,condition_a,sg,pl,pl,0.3262188136577606,0.1845434457063675,bert
+29,İzcilerin lideri sert rüzgardan dolayı üşüdü,condition_b,sg,pl,sg,0.23632995784282684,0.1311032772064209,bert
+29,İzcinin lideri sert rüzgardan dolayı üşüdülar,condition_c,sg,sg,pl,0.30619388818740845,0.24788285791873932,bert
+29,İzcinin lideri sert rüzgardan dolayı üşüdü,condition_d,sg,sg,sg,0.2227376401424408,0.16295479238033295,bert
+30,Diplomatların misafiri yemekten sonra yine acıktılar,condition_a,sg,pl,pl,0.05914570018649101,0.06357535719871521,bert
+30,Diplomatların misafiri yemekten sonra yine acıktı,condition_b,sg,pl,sg,0.07191509008407593,0.07019404321908951,bert
+30,Diplomatın misafiri yemekten sonra yine acıktılar,condition_c,sg,sg,pl,0.12126747518777847,0.058141645044088364,bert
+30,Diplomatın misafiri yemekten sonra yine acıktı,condition_d,sg,sg,sg,0.16952894628047943,0.06299266219139099,bert
+31,Spikerlerin makyözü erken ödemeden dolayı sevindilar,condition_a,sg,pl,pl,0.2820454239845276,0.10330253839492798,bert
+31,Spikerlerin makyözü erken ödemeden dolayı sevindi,condition_b,sg,pl,sg,0.2017136961221695,0.05220681428909302,bert
+31,Spikerin makyözü erken ödemeden dolayı sevindilar,condition_c,sg,sg,pl,0.32710519433021545,0.10231392085552216,bert
+31,Spikerin makyözü erken ödemeden dolayı sevindi,condition_d,sg,sg,sg,0.22698865830898285,0.051870498806238174,bert
+32,Aktörlerin psikoloğu mesaiden hemen sonra uzandılar,condition_a,sg,pl,pl,0.14759233593940735,0.11508369445800781,bert
+32,Aktörlerin psikoloğu mesaiden hemen sonra uzandı,condition_b,sg,pl,sg,0.1719220131635666,0.10865944623947144,bert
+32,Aktörün psikoloğu mesaiden hemen sonra uzandılar,condition_c,sg,sg,pl,0.1640326976776123,0.11101185530424118,bert
+32,Aktörün psikoloğu mesaiden hemen sonra uzandı,condition_d,sg,sg,sg,0.19479596614837646,0.1107565388083458,bert
+33,Gazetecilerin stajyeri ilk denemede epey zorlandılar,condition_a,sg,pl,pl,0.1271534264087677,0.06890775263309479,bert
+33,Gazetecilerin stajyeri ilk denemede epey zorlandı,condition_b,sg,pl,sg,0.14981386065483093,0.08645908534526825,bert
+33,Gazetecinin stajyeri ilk denemede epey zorlandılar,condition_c,sg,sg,pl,0.18753641843795776,0.07084314525127411,bert
+33,Gazetecinin stajyeri ilk denemede epey zorlandı,condition_d,sg,sg,sg,0.19178321957588196,0.08662337064743042,bert
+34,Polislerin amiri geç bir vakitte kalktılar,condition_a,sg,pl,pl,0.05208158493041992,0.0649891272187233,bert
+34,Polislerin amiri geç bir vakitte kalktı,condition_b,sg,pl,sg,0.03913351520895958,0.04145287349820137,bert
+34,Polisin amiri geç bir vakitte kalktılar,condition_c,sg,sg,pl,0.08329160511493683,0.07788553833961487,bert
+34,Polisin amiri geç bir vakitte kalktı,condition_d,sg,sg,sg,0.049072153866291046,0.04272892698645592,bert
+35,Milyonerlerin ortağı müthiş bir ağrıyla uyandılar,condition_a,sg,pl,pl,0.12854322791099548,0.08468751609325409,bert
+35,Milyonerlerin ortağı müthiş bir ağrıyla uyandı,condition_b,sg,pl,sg,0.14485664665699005,0.10452573746442795,bert
+35,Milyonerin ortağı müthiş bir ağrıyla uyandılar,condition_c,sg,sg,pl,0.11098258197307587,0.09052150696516037,bert
+35,Milyonerin ortağı müthiş bir ağrıyla uyandı,condition_d,sg,sg,sg,0.11910456418991089,0.1113235205411911,bert
+36,Kadınların jinekoloğu boş bir caddede yürüdülar,condition_a,sg,pl,pl,0.03128384053707123,0.26604121923446655,bert
+36,Kadınların jinekoloğu boş bir caddede yürüdü,condition_b,sg,pl,sg,0.0063317688181996346,0.08474649488925934,bert
+36,Kadının jinekoloğu boş bir caddede yürüdülar,condition_c,sg,sg,pl,0.07119815051555634,0.2713751792907715,bert
+36,Kadının jinekoloğu boş bir caddede yürüdü,condition_d,sg,sg,sg,0.0189821757376194,0.0892021432518959,bert
+37,Politikacıların tercümanı toplantıdan sonra birden sarardılar,condition_a,sg,pl,pl,0.06546330451965332,0.129630908370018,bert
+37,Politikacıların tercümanı toplantıdan sonra birden sarardı,condition_b,sg,pl,sg,0.06434301286935806,0.1431291401386261,bert
+37,Politikacının tercümanı toplantıdan sonra birden sarardılar,condition_c,sg,sg,pl,0.08410747349262238,0.12359371781349182,bert
+37,Politikacının tercümanı toplantıdan sonra birden sarardı,condition_d,sg,sg,sg,0.08493801206350327,0.13780881464481354,bert
+38,Mühendislerin işvereni yabancı bir ülkede kayboldular,condition_a,sg,pl,pl,0.06284152716398239,0.04094725474715233,bert
+38,Mühendislerin işvereni yabancı bir ülkede kayboldu,condition_b,sg,pl,sg,0.041983745992183685,0.022060919553041458,bert
+38,Mühendisin işvereni yabancı bir ülkede kayboldular,condition_c,sg,sg,pl,0.10902129858732224,0.03735855966806412,bert
+38,Mühendisin işvereni yabancı bir ülkede kayboldu,condition_d,sg,sg,sg,0.06244342401623726,0.01946861669421196,bert
+1,yöneticilerin aşçısı mutfakta sürekli zıpladılar,condition_a,sg,pl,pl,1.8148472309112549,0.01022456306964159,gpt2
+1,yöneticilerin aşçısı mutfakta sürekli zıpladı,condition_b,sg,pl,sg,1.8062353134155273,0.00985933281481266,gpt2
+1,yöneticinin aşçısı mutfakta sürekli zıpladılar,condition_c,sg,sg,pl,1.792792797088623,0.009485394693911076,gpt2
+1,yöneticinin aşçısı mutfakta sürekli zıpladı,condition_d,sg,sg,sg,1.7774503231048584,0.009209167212247849,gpt2
+2,öğrencilerin ablası sınıfta birden bayıldılar,condition_a,sg,pl,pl,2.811283826828003,0.029802558943629265,gpt2
+2,öğrencilerin ablası sınıfta birden bayıldı,condition_b,sg,pl,sg,1.8832530975341797,0.027839690446853638,gpt2
+2,öğrencinin ablası sınıfta birden bayıldılar,condition_c,sg,sg,pl,2.8115692138671875,0.02867284044623375,gpt2
+2,öğrencinin ablası sınıfta birden bayıldı,condition_d,sg,sg,sg,1.882933259010315,0.02659515105187893,gpt2
+3,marangozların abisi atölyeden hızla uzaklaştılar,condition_a,sg,pl,pl,1.8691415786743164,0.0055989231914281845,gpt2
+3,marangozların abisi atölyeden hızla uzaklaştı,condition_b,sg,pl,sg,0.8608272075653076,0.0031825818587094545,gpt2
+3,marangozun abisi atölyeden hızla uzaklaştılar,condition_c,sg,sg,pl,1.867871880531311,0.004475181456655264,gpt2
+3,marangozun abisi atölyeden hızla uzaklaştı,condition_d,sg,sg,sg,0.8648448586463928,0.0027513420209288597,gpt2
+4,mahallelilerin emlakçısı aniden küstahça güldüler,condition_a,sg,pl,pl,1.818433403968811,0.0026148022152483463,gpt2
+4,mahallelilerin emlakçısı aniden küstahça güldü,condition_b,sg,pl,sg,0.9064310789108276,0.0012614423176273704,gpt2
+4,mahallelinin emlakçısı aniden küstahça güldüler,condition_c,sg,sg,pl,1.8042967319488525,0.0032848434057086706,gpt2
+4,mahallelinin emlakçısı aniden küstahça güldü,condition_d,sg,sg,sg,0.8998244404792786,0.0015611208509653807,gpt2
+5,kızların halası sabaha kadar ağladılar,condition_a,sg,pl,pl,1.744918942451477,0.019496824592351913,gpt2
+5,kızların halası sabaha kadar ağladı,condition_b,sg,pl,sg,1.675715684890747,0.024574030190706253,gpt2
+5,kızın halası sabaha kadar ağladılar,condition_c,sg,sg,pl,1.8123375177383423,0.015222270973026752,gpt2
+5,kızın halası sabaha kadar ağladı,condition_d,sg,sg,sg,1.785628318786621,0.019612858071923256,gpt2
+6,damatların dayısı arada sırada sıkıldılar,condition_a,sg,pl,pl,2.838496208190918,0.01266475673764944,gpt2
+6,damatların dayısı arada sırada sıkıldı,condition_b,sg,pl,sg,1.9014575481414795,0.0076666041277348995,gpt2
+6,damatın dayısı arada sırada sıkıldılar,condition_c,sg,sg,pl,2.841641902923584,0.010364167392253876,gpt2
+6,damatın dayısı arada sırada sıkıldı,condition_d,sg,sg,sg,1.9032236337661743,0.006061443127691746,gpt2
+7,doktorların çiçekçisi günden güne zayıfladılar,condition_a,sg,pl,pl,1.9092835187911987,0.006770875304937363,gpt2
+7,doktorların çiçekçisi günden güne zayıfladı,condition_b,sg,pl,sg,1.8594772815704346,0.005296643357723951,gpt2
+7,doktorun çiçekçisi günden güne zayıfladılar,condition_c,sg,sg,pl,1.8900647163391113,0.006489716470241547,gpt2
+7,doktorun çiçekçisi günden güne zayıfladı,condition_d,sg,sg,sg,1.830297827720642,0.004796007182449102,gpt2
+8,stajyerlerin eniştesi geceden önce uyudular,condition_a,sg,pl,pl,2.7812774181365967,0.01695859245955944,gpt2
+8,stajyerlerin eniştesi geceden önce uyudu,condition_b,sg,pl,sg,1.855259895324707,0.005136989988386631,gpt2
+8,stajyerin eniştesi geceden önce uyudular,condition_c,sg,sg,pl,2.7979354858398438,0.013348536565899849,gpt2
+8,stajyerin eniştesi geceden önce uyudu,condition_d,sg,sg,sg,1.867154598236084,0.003865954466164112,gpt2
+9,aristokratların hizmetçisi yorgun argın yattılar,condition_a,sg,pl,pl,1.8985176086425781,0.0019857161678373814,gpt2
+9,aristokratların hizmetçisi yorgun argın yattı,condition_b,sg,pl,sg,0.9531984329223633,0.0011298260651528835,gpt2
+9,aristokratın hizmetçisi yorgun argın yattılar,condition_c,sg,sg,pl,1.903788685798645,0.002350586000829935,gpt2
+9,aristokratın hizmetçisi yorgun argın yattı,condition_d,sg,sg,sg,0.9538938999176025,0.0012478800490498543,gpt2
+10,konuşmacıların sunucusu olağanüstü hızlı koştular,condition_a,sg,pl,pl,1.778510570526123,0.002939780242741108,gpt2
+10,konuşmacıların sunucusu olağanüstü hızlı koştu,condition_b,sg,pl,sg,0.8706215620040894,0.0015328703448176384,gpt2
+10,konuşmacının sunucusu olağanüstü hızlı koştular,condition_c,sg,sg,pl,1.7589571475982666,0.003338150680065155,gpt2
+10,konuşmacının sunucusu olağanüstü hızlı koştu,condition_d,sg,sg,sg,0.859469473361969,0.0017835826147347689,gpt2
+11,psikiyatristlerin eczacısı aç susuz dolaştılar,condition_a,sg,pl,pl,1.8545466661453247,0.008411563001573086,gpt2
+11,psikiyatristlerin eczacısı aç susuz dolaştı,condition_b,sg,pl,sg,1.8617527484893799,0.007069563493132591,gpt2
+11,psikiyatristin eczacısı aç susuz dolaştılar,condition_c,sg,sg,pl,1.8574092388153076,0.007551462855190039,gpt2
+11,psikiyatristin eczacısı aç susuz dolaştı,condition_d,sg,sg,sg,1.8654475212097168,0.00617622584104538,gpt2
+12,politikacıların hocası adliyeden çabucak çıktılar,condition_a,sg,pl,pl,0.9171789288520813,0.0005824918043799698,gpt2
+12,politikacıların hocası adliyeden çabucak çıktı,condition_b,sg,pl,sg,0.9422273635864258,0.0005630841478705406,gpt2
+12,politikacının hocası adliyeden çabucak çıktılar,condition_c,sg,sg,pl,0.9224334955215454,0.0007587893633171916,gpt2
+12,politikacının hocası adliyeden çabucak çıktı,condition_d,sg,sg,sg,0.9453465342521667,0.0006770235486328602,gpt2
+13,hakimlerin çaycısı nedensiz yere kızdılar,condition_a,sg,pl,pl,1.8442845344543457,0.004014652222394943,gpt2
+13,hakimlerin çaycısı nedensiz yere kızdı,condition_b,sg,pl,sg,1.8694937229156494,0.005039460025727749,gpt2
+13,hakimin çaycısı nedensiz yere kızdılar,condition_c,sg,sg,pl,1.8409503698349,0.004211533814668655,gpt2
+13,hakimin çaycısı nedensiz yere kızdı,condition_d,sg,sg,sg,1.8677849769592285,0.005237970035523176,gpt2
+14,oyuncuların hemşiresi etrafta amaçsızca gezdiler,condition_a,sg,pl,pl,1.8919854164123535,0.00554725481197238,gpt2
+14,oyuncuların hemşiresi etrafta amaçsızca gezdi,condition_b,sg,pl,sg,0.8509379625320435,0.004337905440479517,gpt2
+14,oyuncunun hemşiresi etrafta amaçsızca gezdiler,condition_c,sg,sg,pl,1.8922138214111328,0.0056047807447612286,gpt2
+14,oyuncunun hemşiresi etrafta amaçsızca gezdi,condition_d,sg,sg,sg,0.8515686392784119,0.004947737790644169,gpt2
+15,öğretmenlerin müdiresi biraz önce aradılar,condition_a,sg,pl,pl,1.8595026731491089,0.013461221940815449,gpt2
+15,öğretmenlerin müdiresi biraz önce aradı,condition_b,sg,pl,sg,0.9131351113319397,0.005868154112249613,gpt2
+15,öğretmenin müdiresi biraz önce aradılar,condition_c,sg,sg,pl,1.8672078847885132,0.010890183970332146,gpt2
+15,öğretmenin müdiresi biraz önce aradı,condition_d,sg,sg,sg,0.9059956669807434,0.005033884197473526,gpt2
+16,milyonerlerin terzisi tamamen gereksizce bağırdılar,condition_a,sg,pl,pl,1.7664380073547363,0.012733757495880127,gpt2
+16,milyonerlerin terzisi tamamen gereksizce bağırdı,condition_b,sg,pl,sg,0.9204256534576416,0.009163819253444672,gpt2
+16,milyonerin terzisi tamamen gereksizce bağırdılar,condition_c,sg,sg,pl,1.7731380462646484,0.010688782669603825,gpt2
+16,milyonerin terzisi tamamen gereksizce bağırdı,condition_d,sg,sg,sg,0.9198192954063416,0.006737161427736282,gpt2
+17,bebeklerin bakıcısı çok kibar davrandılar,condition_a,sg,pl,pl,1.6179909706115723,0.02913869172334671,gpt2
+17,bebeklerin bakıcısı çok kibar davrandı,condition_b,sg,pl,sg,1.593786358833313,0.027850355952978134,gpt2
+17,bebeğin bakıcısı çok kibar davrandılar,condition_c,sg,sg,pl,1.6413167715072632,0.02643972635269165,gpt2
+17,bebeğin bakıcısı çok kibar davrandı,condition_d,sg,sg,sg,1.6259403228759766,0.0271508377045393,gpt2
+18,çocukların dadısı yüksek sesle konuştular,condition_a,sg,pl,pl,1.7644898891448975,0.020778771489858627,gpt2
+18,çocukların dadısı yüksek sesle konuştu,condition_b,sg,pl,sg,0.8629136085510254,0.010556083172559738,gpt2
+18,çocuğun dadısı yüksek sesle konuştular,condition_c,sg,sg,pl,1.7308082580566406,0.018913116306066513,gpt2
+18,çocuğun dadısı yüksek sesle konuştu,condition_d,sg,sg,sg,0.8496469855308533,0.008963441476225853,gpt2
+19,futbolcuların sürücüsü çok yavaş çalıştılar,condition_a,sg,pl,pl,0.884657621383667,0.012410050258040428,gpt2
+19,futbolcuların sürücüsü çok yavaş çalıştı,condition_b,sg,pl,sg,0.8524936437606812,0.02266758494079113,gpt2
+19,futbolcunun sürücüsü çok yavaş çalıştılar,condition_c,sg,sg,pl,0.9013230204582214,0.009719493798911572,gpt2
+19,futbolcunun sürücüsü çok yavaş çalıştı,condition_d,sg,sg,sg,0.8704685568809509,0.018004946410655975,gpt2
+20,modacıların taksicisi saatlerce durmaksızın içtiler,condition_a,sg,pl,pl,1.824028491973877,0.026088101789355278,gpt2
+20,modacıların taksicisi saatlerce durmaksızın içti,condition_b,sg,pl,sg,1.8409361839294434,0.02313842810690403,gpt2
+20,modacının taksicisi saatlerce durmaksızın içtiler,condition_c,sg,sg,pl,1.8194317817687988,0.027934614568948746,gpt2
+20,modacının taksicisi saatlerce durmaksızın içti,condition_d,sg,sg,sg,1.838163137435913,0.02435961738228798,gpt2
+21,sanatçıların çalgıcısı feci bir şekilde öldüler,condition_a,sg,pl,pl,1.5796151161193848,0.005165243521332741,gpt2
+21,sanatçıların çalgıcısı feci bir şekilde öldü,condition_b,sg,pl,sg,0.6798269748687744,0.0012149972608312964,gpt2
+21,sanatçının çalgıcısı feci bir şekilde öldüler,condition_c,sg,sg,pl,1.4115461111068726,0.004953797906637192,gpt2
+21,sanatçının çalgıcısı feci bir şekilde öldü,condition_d,sg,sg,sg,0.5388816595077515,0.0009600543417036533,gpt2
+22,dedektiflerin dişçisi ilk kez çılgınca eğlendiler,condition_a,sg,pl,pl,1.775641918182373,0.0072874221950769424,gpt2
+22,dedektiflerin dişçisi ilk kez çılgınca eğlendi,condition_b,sg,pl,sg,1.8063201904296875,0.02045142836868763,gpt2
+22,dedektifin dişçisi ilk kez çılgınca eğlendiler,condition_c,sg,sg,pl,1.8037484884262085,0.007172943092882633,gpt2
+22,dedektifin dişçisi ilk kez çılgınca eğlendi,condition_d,sg,sg,sg,1.810907244682312,0.01985812745988369,gpt2
+23,esnafların müşterisi şikayettten hemen sonra sustular,condition_a,sg,pl,pl,1.8962600231170654,0.0016295250970870256,gpt2
+23,esnafların müşterisi şikayettten hemen sonra sustu,condition_b,sg,pl,sg,1.915487289428711,0.0015030393842607737,gpt2
+23,esnafın müşterisi şikayettten hemen sonra sustular,condition_c,sg,sg,pl,1.8923463821411133,0.0014480138197541237,gpt2
+23,esnafın müşterisi şikayettten hemen sonra sustu,condition_d,sg,sg,sg,1.9143822193145752,0.0012551385443657637,gpt2
+24,şarkıcıların koruması her zamanki gibi geciktiler,condition_a,sg,pl,pl,1.8305069208145142,0.005045878700911999,gpt2
+24,şarkıcıların koruması her zamanki gibi gecikti,condition_b,sg,pl,sg,1.8214362859725952,0.0040263948030769825,gpt2
+24,şarkıcının koruması her zamanki gibi geciktiler,condition_c,sg,sg,pl,1.8399937152862549,0.005488800350576639,gpt2
+24,şarkıcının koruması her zamanki gibi gecikti,condition_d,sg,sg,sg,1.8237969875335693,0.004206277895718813,gpt2
+25,göstericilerin izleyicisi akşama kadar sessizce oturdular,condition_a,sg,pl,pl,1.7541782855987549,0.009392663836479187,gpt2
+25,göstericilerin izleyicisi akşama kadar sessizce oturdu,condition_b,sg,pl,sg,0.8145545721054077,0.006912035867571831,gpt2
+25,göstericinin izleyicisi akşama kadar sessizce oturdular,condition_c,sg,sg,pl,1.7391718626022339,0.008954370394349098,gpt2
+25,göstericinin izleyicisi akşama kadar sessizce oturdu,condition_d,sg,sg,sg,0.8020006418228149,0.006398184224963188,gpt2
+26,cerrahların hastası akşamki gösteriden önce kaçtılar,condition_a,sg,pl,pl,1.8680545091629028,0.004489096812903881,gpt2
+26,cerrahların hastası akşamki gösteriden önce kaçtı,condition_b,sg,pl,sg,0.944182276725769,0.0015324326232075691,gpt2
+26,cerrahın hastası akşamki gösteriden önce kaçtılar,condition_c,sg,sg,pl,1.8677709102630615,0.00397644704207778,gpt2
+26,cerrahın hastası akşamki gösteriden önce kaçtı,condition_d,sg,sg,sg,0.9443293809890747,0.0013026974629610777,gpt2
+27,dalgıçların annesi bile bile geç kaldılar,condition_a,sg,pl,pl,0.9316521286964417,0.0007891897694207728,gpt2
+27,dalgıçların annesi bile bile geç kaldı,condition_b,sg,pl,sg,0.9304956197738647,0.0006174637819640338,gpt2
+27,dalgıcın annesi bile bile geç kaldılar,condition_c,sg,sg,pl,0.9317604899406433,0.0007885390077717602,gpt2
+27,dalgıcın annesi bile bile geç kaldı,condition_d,sg,sg,sg,0.9270203709602356,0.0006864748429507017,gpt2
+28,fabrikatörlerin işçisi beklenmedik bir anda hastalandılar,condition_a,sg,pl,pl,1.8258484601974487,0.00682312436401844,gpt2
+28,fabrikatörlerin işçisi beklenmedik bir anda hastalandı,condition_b,sg,pl,sg,1.837316870689392,0.01567104086279869,gpt2
+28,fabrikatörün işçisi beklenmedik bir anda hastalandılar,condition_c,sg,sg,pl,1.8193784952163696,0.005984085611999035,gpt2
+28,fabrikatörün işçisi beklenmedik bir anda hastalandı,condition_d,sg,sg,sg,1.8379309177398682,0.014056811109185219,gpt2
+29,komedyenlerin yardımcısı poyrazdan dolayı üşüdüler,condition_a,sg,pl,pl,2.771557569503784,0.00691642053425312,gpt2
+29,komedyenlerin yardımcısı poyrazdan dolayı üşüdü,condition_b,sg,pl,sg,1.8634560108184814,0.0037157696206122637,gpt2
+29,komedyenin yardımcısı poyrazdan dolayı üşüdüler,condition_c,sg,sg,pl,2.7677972316741943,0.0048363725654780865,gpt2
+29,komedyenin yardımcısı poyrazdan dolayı üşüdü,condition_d,sg,sg,sg,1.8640713691711426,0.0025868669617921114,gpt2
+30,şoförlerin yolcusu yemekten sonra yine acıktılar,condition_a,sg,pl,pl,1.8196049928665161,0.006936839781701565,gpt2
+30,şoförlerin yolcusu yemekten sonra yine acıktı,condition_b,sg,pl,sg,1.840262532234192,0.007809359580278397,gpt2
+30,şoförün yolcusu yemekten sonra yine acıktılar,condition_c,sg,sg,pl,1.8113462924957275,0.006495023146271706,gpt2
+30,şoförün yolcusu yemekten sonra yine acıktı,condition_d,sg,sg,sg,1.8310942649841309,0.007760943844914436,gpt2
+31,mühendislerin kapıcısı erken ödemeden dolayı sevindiler,condition_a,sg,pl,pl,2.885000705718994,0.004985104314982891,gpt2
+31,mühendislerin kapıcısı erken ödemeden dolayı sevindi,condition_b,sg,pl,sg,1.818509578704834,0.003885906655341387,gpt2
+31,mühendisin kapıcısı erken ödemeden dolayı sevindiler,condition_c,sg,sg,pl,2.892390012741089,0.00452446611598134,gpt2
+31,mühendisin kapıcısı erken ödemeden dolayı sevindi,condition_d,sg,sg,sg,1.8123087882995605,0.0036999350413680077,gpt2
+32,pazarcıların nakliyecisi mesaiden hemen sonra uzandılar,condition_a,sg,pl,pl,1.941645622253418,0.01245766319334507,gpt2
+32,pazarcıların nakliyecisi mesaiden hemen sonra uzandı,condition_b,sg,pl,sg,0.930616557598114,0.01670382358133793,gpt2
+32,pazarcının nakliyecisi mesaiden hemen sonra uzandılar,condition_c,sg,sg,pl,1.9378899335861206,0.01269938237965107,gpt2
+32,pazarcının nakliyecisi mesaiden hemen sonra uzandı,condition_d,sg,sg,sg,0.930291473865509,0.016808046028017998,gpt2
+33,oyuncuların eğitimcisi ilk denemede epey zorlandılar,condition_a,sg,pl,pl,2.629944086074829,0.014626197516918182,gpt2
+33,oyuncuların eğitimcisi ilk denemede epey zorlandı,condition_b,sg,pl,sg,1.7131977081298828,0.008938719518482685,gpt2
+33,oyuncunun eğitimcisi ilk denemede epey zorlandılar,condition_c,sg,sg,pl,2.665285348892212,0.014674927107989788,gpt2
+33,oyuncunun eğitimcisi ilk denemede epey zorlandı,condition_d,sg,sg,sg,1.743718147277832,0.008808286860585213,gpt2
+34,mankenlerin modacısı geç bir vakitte kalktılar,condition_a,sg,pl,pl,1.9013221263885498,0.003831613576039672,gpt2
+34,mankenlerin modacısı geç bir vakitte kalktı,condition_b,sg,pl,sg,0.8989059925079346,0.0015398540999740362,gpt2
+34,mankenin modacısı geç bir vakitte kalktılar,condition_c,sg,sg,pl,1.902491569519043,0.004927166271954775,gpt2
+34,mankenin modacısı geç bir vakitte kalktı,condition_d,sg,sg,sg,0.9035328030586243,0.001864324091002345,gpt2
+35,konukların teyzesi müthiş bir ağrıyla uyandılar,condition_a,sg,pl,pl,1.7715883255004883,0.009088580496609211,gpt2
+35,konukların teyzesi müthiş bir ağrıyla uyandı,condition_b,sg,pl,sg,1.7435028553009033,0.011171335354447365,gpt2
+35,konuğun teyzesi müthiş bir ağrıyla uyandılar,condition_c,sg,sg,pl,1.7615989446640015,0.011408325284719467,gpt2
+35,konuğun teyzesi müthiş bir ağrıyla uyandı,condition_d,sg,sg,sg,1.7231601476669312,0.01426282525062561,gpt2
+36,oğlanların amcası boş bir caddede yürüdüler,condition_a,sg,pl,pl,1.8191174268722534,0.001518290489912033,gpt2
+36,oğlanların amcası boş bir caddede yürüdü,condition_b,sg,pl,sg,0.8873069286346436,0.000244112205109559,gpt2
+36,oğlanın amcası boş bir caddede yürüdüler,condition_c,sg,sg,pl,1.8570494651794434,0.0020841690711677074,gpt2
+36,oğlanın amcası boş bir caddede yürüdü,condition_d,sg,sg,sg,0.9074136018753052,0.00034892247640527785,gpt2
+37,avukatların komşusu toplantıdan sonra birden sarardılar,condition_a,sg,pl,pl,1.9448790550231934,0.0026366207748651505,gpt2
+37,avukatların komşusu toplantıdan sonra birden sarardı,condition_b,sg,pl,sg,1.9225246906280518,0.0036102081649005413,gpt2
+37,avukatın komşusu toplantıdan sonra birden sarardılar,condition_c,sg,sg,pl,1.9410569667816162,0.0035249036736786366,gpt2
+37,avukatın komşusu toplantıdan sonra birden sarardı,condition_d,sg,sg,sg,1.918086051940918,0.005470686592161655,gpt2
+38,ünlülerin falcısı yabancı bir ülkede kayboldular,condition_a,sg,pl,pl,1.8176429271697998,0.00968618132174015,gpt2
+38,ünlülerin falcısı yabancı bir ülkede kayboldu,condition_b,sg,pl,sg,0.8664981722831726,0.004589866381138563,gpt2
+38,ünlünün falcısı yabancı bir ülkede kayboldular,condition_c,sg,sg,pl,1.8200229406356812,0.008845431730151176,gpt2
+38,ünlünün falcısı yabancı bir ülkede kayboldu,condition_d,sg,sg,sg,0.8739217519760132,0.003954670857638121,gpt2
+39,çiftçilerin bekçisi normalden çok yavaş gezindiler,condition_a,sg,pl,pl,2.8781166076660156,0.018240511417388916,gpt2
+39,çiftçilerin bekçisi normalden çok yavaş gezindi,condition_b,sg,pl,sg,1.8220856189727783,0.020520368590950966,gpt2
+39,çiftçinin bekçisi normalden çok yavaş gezindiler,condition_c,sg,sg,pl,2.871346950531006,0.019369488582015038,gpt2
+39,çiftçinin bekçisi normalden çok yavaş gezindi,condition_d,sg,sg,sg,1.8142943382263184,0.020841332152485847,gpt2
+40,kadınların ninesi geçen seneye göre dinçleştiler,condition_a,sg,pl,pl,2.762113094329834,0.050781916826963425,gpt2
+40,kadınların ninesi geçen seneye göre dinçleşti,condition_b,sg,pl,sg,1.7594785690307617,0.04468443989753723,gpt2
+40,kadının ninesi geçen seneye göre dinçleştiler,condition_c,sg,sg,pl,2.7915711402893066,0.04676694795489311,gpt2
+40,kadının ninesi geçen seneye göre dinçleşti,condition_d,sg,sg,sg,1.807652235031128,0.03754226118326187,gpt2
+1,Şarkıcıların vokalisti sahnede sürekli zıpladılar,condition_a,sg,pl,pl,1.6557080745697021,0.017448358237743378,gpt2
+1,Şarkıcıların vokalisti sahnede sürekli zıpladı,condition_b,sg,pl,sg,1.6205720901489258,0.022131748497486115,gpt2
+1,Şarkıcının vokalisti sahnede sürekli zıpladılar,condition_c,sg,sg,pl,1.6395787000656128,0.015750283375382423,gpt2
+1,Şarkıcının vokalisti sahnede sürekli zıpladı,condition_d,sg,sg,sg,1.6058250665664673,0.019440878182649612,gpt2
+2,Öğrencilerin danışmanı sınıfta birden bayıldılar,condition_a,sg,pl,pl,2.847015857696533,0.012348497286438942,gpt2
+2,Öğrencilerin danışmanı sınıfta birden bayıldı,condition_b,sg,pl,sg,1.9220471382141113,0.010323883965611458,gpt2
+2,Öğrencinin danışmanı sınıfta birden bayıldılar,condition_c,sg,sg,pl,2.8433589935302734,0.009600380435585976,gpt2
+2,Öğrencinin danışmanı sınıfta birden bayıldı,condition_d,sg,sg,sg,1.9205552339553833,0.008524502627551556,gpt2
+3,Ressamların rakibi atölyeden hızla uzaklaştılar,condition_a,sg,pl,pl,1.8096492290496826,0.0189311895519495,gpt2
+3,Ressamların rakibi atölyeden hızla uzaklaştı,condition_b,sg,pl,sg,0.8388935327529907,0.00711851567029953,gpt2
+3,Ressamın rakibi atölyeden hızla uzaklaştılar,condition_c,sg,sg,pl,1.8004940748214722,0.018090039491653442,gpt2
+3,Ressamın rakibi atölyeden hızla uzaklaştı,condition_d,sg,sg,sg,0.83492511510849,0.006670620758086443,gpt2
+4,Subayların düşmanı aniden küstahça güldülar,condition_a,sg,pl,pl,1.8396354913711548,0.0067757414653897285,gpt2
+4,Subayların düşmanı aniden küstahça güldü,condition_b,sg,pl,sg,0.9097109436988831,0.0019295670790597796,gpt2
+4,Subayın düşmanı aniden küstahça güldülar,condition_c,sg,sg,pl,1.8513466119766235,0.007747515570372343,gpt2
+4,Subayın düşmanı aniden küstahça güldü,condition_d,sg,sg,sg,0.9224455952644348,0.0016988113056868315,gpt2
+5,Müzisyenlerin hayranı sabaha kadar ağladılar,condition_a,sg,pl,pl,1.7928876876831055,0.011104270815849304,gpt2
+5,Müzisyenlerin hayranı sabaha kadar ağladı,condition_b,sg,pl,sg,1.766066312789917,0.009273541159927845,gpt2
+5,Müzisyenin hayranı sabaha kadar ağladılar,condition_c,sg,sg,pl,1.7918446063995361,0.012995690107345581,gpt2
+5,Müzisyenin hayranı sabaha kadar ağladı,condition_d,sg,sg,sg,1.7562335729599,0.011153202503919601,gpt2
+6,Borsacıların çalışanı arada sırada sıkıldılar,condition_a,sg,pl,pl,2.7832789421081543,0.003972117323428392,gpt2
+6,Borsacıların çalışanı arada sırada sıkıldı,condition_b,sg,pl,sg,1.8486032485961914,0.002782913390547037,gpt2
+6,Borsacının çalışanı arada sırada sıkıldılar,condition_c,sg,sg,pl,2.7598280906677246,0.004235494416207075,gpt2
+6,Borsacının çalışanı arada sırada sıkıldı,condition_d,sg,sg,sg,1.8312467336654663,0.002836413448676467,gpt2
+7,Profesörlerin sekreteri günden güne zayıfladılar,condition_a,sg,pl,pl,1.9347482919692993,0.0011508484603837132,gpt2
+7,Profesörlerin sekreteri günden güne zayıfladı,condition_b,sg,pl,sg,1.8987081050872803,0.0011857254430651665,gpt2
+7,Profesörün sekreteri günden güne zayıfladılar,condition_c,sg,sg,pl,1.925095796585083,0.001035226508975029,gpt2
+7,Profesörün sekreteri günden güne zayıfladı,condition_d,sg,sg,sg,1.885414719581604,0.0010331689845770597,gpt2
+8,Veterinerlerin asistanı geceden önce uyudular,condition_a,sg,pl,pl,2.8314857482910156,0.0031102413777261972,gpt2
+8,Veterinerlerin asistanı geceden önce uyudu,condition_b,sg,pl,sg,1.9030790328979492,0.0018607915844768286,gpt2
+8,Veterinerin asistanı geceden önce uyudular,condition_c,sg,sg,pl,2.835951089859009,0.0026558104436844587,gpt2
+8,Veterinerin asistanı geceden önce uyudu,condition_d,sg,sg,sg,1.9109017848968506,0.0013991997111588717,gpt2
+9,Yönetmenlerin masörü yorgun argın yattılar,condition_a,sg,pl,pl,1.8768248558044434,0.009525320492684841,gpt2
+9,Yönetmenlerin masörü yorgun argın yattı,condition_b,sg,pl,sg,0.9420402646064758,0.003855538321658969,gpt2
+9,Yönetmenin masörü yorgun argın yattılar,condition_c,sg,sg,pl,1.8806793689727783,0.009993833489716053,gpt2
+9,Yönetmenin masörü yorgun argın yattı,condition_d,sg,sg,sg,0.939363956451416,0.003926980309188366,gpt2
+10,Teknisyenlerin eğitmeni olağanüstü hızlı koştular,condition_a,sg,pl,pl,1.8182175159454346,0.008973011747002602,gpt2
+10,Teknisyenlerin eğitmeni olağanüstü hızlı koştu,condition_b,sg,pl,sg,0.9059175252914429,0.0038821655325591564,gpt2
+10,Teknisyenin eğitmeni olağanüstü hızlı koştular,condition_c,sg,sg,pl,1.778764247894287,0.01259174570441246,gpt2
+10,Teknisyenin eğitmeni olağanüstü hızlı koştu,condition_d,sg,sg,sg,0.8857080340385437,0.005091625731438398,gpt2
+11,Turistlerin rehberi aç susuz dolaştılar,condition_a,sg,pl,pl,1.698677659034729,0.08410072326660156,gpt2
+11,Turistlerin rehberi aç susuz dolaştı,condition_b,sg,pl,sg,1.6973313093185425,0.08295378088951111,gpt2
+11,Turistin rehberi aç susuz dolaştılar,condition_c,sg,sg,pl,1.681196928024292,0.11079872399568558,gpt2
+11,Turistin rehberi aç susuz dolaştı,condition_d,sg,sg,sg,1.682164192199707,0.10859683901071548,gpt2
+12,Zanlıların şahidi adliyeden çabucak çıktılar,condition_a,sg,pl,pl,0.9312344193458557,0.00438377819955349,gpt2
+12,Zanlıların şahidi adliyeden çabucak çıktı,condition_b,sg,pl,sg,0.9360908269882202,0.003282706718891859,gpt2
+12,Zanlının şahidi adliyeden çabucak çıktılar,condition_c,sg,sg,pl,0.9285197257995605,0.005420314613729715,gpt2
+12,Zanlının şahidi adliyeden çabucak çıktı,condition_d,sg,sg,sg,0.9327249526977539,0.0037371073849499226,gpt2
+13,Bursiyerlerin kefili nedensiz yere kızdılar,condition_a,sg,pl,pl,1.7807533740997314,0.030222594738006592,gpt2
+13,Bursiyerlerin kefili nedensiz yere kızdı,condition_b,sg,pl,sg,1.7884896993637085,0.03302416205406189,gpt2
+13,Bursiyerin kefili nedensiz yere kızdılar,condition_c,sg,sg,pl,1.78560209274292,0.027507171034812927,gpt2
+13,Bursiyerin kefili nedensiz yere kızdı,condition_d,sg,sg,sg,1.7917029857635498,0.029242541640996933,gpt2
+14,Futbolcuların kaptanı etrafta amaçsızca gezdilar,condition_a,sg,pl,pl,2.899168014526367,0.018779903650283813,gpt2
+14,Futbolcuların kaptanı etrafta amaçsızca gezdi,condition_b,sg,pl,sg,0.8608733415603638,0.004330204799771309,gpt2
+14,Futbolcunun kaptanı etrafta amaçsızca gezdilar,condition_c,sg,sg,pl,2.8891642093658447,0.021252715960144997,gpt2
+14,Futbolcunun kaptanı etrafta amaçsızca gezdi,condition_d,sg,sg,sg,0.8503796458244324,0.005442719906568527,gpt2
+15,Yazarların editörü biraz önce aradılar,condition_a,sg,pl,pl,1.8986040353775024,0.006479362957179546,gpt2
+15,Yazarların editörü biraz önce aradı,condition_b,sg,pl,sg,0.9121396541595459,0.0011390572180971503,gpt2
+15,Yazarın editörü biraz önce aradılar,condition_c,sg,sg,pl,1.911510944366455,0.00699663208797574,gpt2
+15,Yazarın editörü biraz önce aradı,condition_d,sg,sg,sg,0.9312145709991455,0.0019222077680751681,gpt2
+16,Askerlerin berberi tamamen gereksizce bağırdılar,condition_a,sg,pl,pl,1.7497984170913696,0.013583909720182419,gpt2
+16,Askerlerin berberi tamamen gereksizce bağırdı,condition_b,sg,pl,sg,0.9013491868972778,0.004621831700205803,gpt2
+16,Askerin berberi tamamen gereksizce bağırdılar,condition_c,sg,sg,pl,1.7372695207595825,0.017379028722643852,gpt2
+16,Askerin berberi tamamen gereksizce bağırdı,condition_d,sg,sg,sg,0.8960381746292114,0.005164069123566151,gpt2
+17,Yarışmacıların koçu çok kibar davrandılar,condition_a,sg,pl,pl,1.6163067817687988,0.028313184157013893,gpt2
+17,Yarışmacıların koçu çok kibar davrandı,condition_b,sg,pl,sg,1.5709419250488281,0.03215659409761429,gpt2
+17,Yarışmacının koçu çok kibar davrandılar,condition_c,sg,sg,pl,1.6110594272613525,0.026392456144094467,gpt2
+17,Yarışmacının koçu çok kibar davrandı,condition_d,sg,sg,sg,1.55736243724823,0.029776159673929214,gpt2
+18,Sporcuların antrenörü yüksek sesle konuştular,condition_a,sg,pl,pl,1.7964898347854614,0.007967875339090824,gpt2
+18,Sporcuların antrenörü yüksek sesle konuştu,condition_b,sg,pl,sg,0.8902319669723511,0.0031766523607075214,gpt2
+18,Sporcunun antrenörü yüksek sesle konuştular,condition_c,sg,sg,pl,1.7886489629745483,0.009259622544050217,gpt2
+18,Sporcunun antrenörü yüksek sesle konuştu,condition_d,sg,sg,sg,0.8912943601608276,0.0034362655133008957,gpt2
+19,Berberlerin çırağı çok yavaş çalıştılar,condition_a,sg,pl,pl,0.8780149221420288,0.0243740975856781,gpt2
+19,Berberlerin çırağı çok yavaş çalıştı,condition_b,sg,pl,sg,0.8677496910095215,0.025185950100421906,gpt2
+19,Berberin çırağı çok yavaş çalıştılar,condition_c,sg,sg,pl,0.8901771306991577,0.01932869665324688,gpt2
+19,Berberin çırağı çok yavaş çalıştı,condition_d,sg,sg,sg,0.8844439387321472,0.01926713064312935,gpt2
+20,Muhabirlerin patronu saatlerce durmaksızın içtilar,condition_a,sg,pl,pl,2.8241052627563477,0.00946198869496584,gpt2
+20,Muhabirlerin patronu saatlerce durmaksızın içti,condition_b,sg,pl,sg,1.829352617263794,0.006166291423141956,gpt2
+20,Muhabirin patronu saatlerce durmaksızın içtilar,condition_c,sg,sg,pl,2.8212509155273438,0.014403153210878372,gpt2
+20,Muhabirin patronu saatlerce durmaksızın içti,condition_d,sg,sg,sg,1.8223681449890137,0.008354862220585346,gpt2
+21,Oyuncuların dublörü feci bir şekilde öldülar,condition_a,sg,pl,pl,1.6527976989746094,0.012636955827474594,gpt2
+21,Oyuncuların dublörü feci bir şekilde öldü,condition_b,sg,pl,sg,0.71627277135849,0.00891590490937233,gpt2
+21,Oyuncunun dublörü feci bir şekilde öldülar,condition_c,sg,sg,pl,1.6460752487182617,0.012766700237989426,gpt2
+21,Oyuncunun dublörü feci bir şekilde öldü,condition_d,sg,sg,sg,0.7040506601333618,0.009478962048888206,gpt2
+22,Sunucuların kuaförü ilk kez çılgınca eğlendilar,condition_a,sg,pl,pl,2.807328939437866,0.017796801403164864,gpt2
+22,Sunucuların kuaförü ilk kez çılgınca eğlendi,condition_b,sg,pl,sg,1.8005523681640625,0.022021111100912094,gpt2
+22,Sunucunun kuaförü ilk kez çılgınca eğlendilar,condition_c,sg,sg,pl,2.817678213119507,0.019100915640592575,gpt2
+22,Sunucunun kuaförü ilk kez çılgınca eğlendi,condition_d,sg,sg,sg,1.8081247806549072,0.021057413890957832,gpt2
+23,Garsonların şefi şikayetten hemen sonra sustular,condition_a,sg,pl,pl,1.836442470550537,0.0020003505051136017,gpt2
+23,Garsonların şefi şikayetten hemen sonra sustu,condition_b,sg,pl,sg,1.886169195175171,0.0021641268394887447,gpt2
+23,Garsonun şefi şikayetten hemen sonra sustular,condition_c,sg,sg,pl,1.8317713737487793,0.0018624861259013414,gpt2
+23,Garsonun şefi şikayetten hemen sonra sustu,condition_d,sg,sg,sg,1.8846559524536133,0.0019446953665465117,gpt2
+24,Noterlerin şoförü her zamanki gibi geciktilar,condition_a,sg,pl,pl,2.786564826965332,0.012335329316556454,gpt2
+24,Noterlerin şoförü her zamanki gibi gecikti,condition_b,sg,pl,sg,1.7548032999038696,0.010760840959846973,gpt2
+24,Noterin şoförü her zamanki gibi geciktilar,condition_c,sg,sg,pl,2.803168296813965,0.010116918943822384,gpt2
+24,Noterin şoförü her zamanki gibi gecikti,condition_d,sg,sg,sg,1.772984504699707,0.00830661877989769,gpt2
+25,Tenisçilerin terapisti akşama kadar sessizce oturdular,condition_a,sg,pl,pl,1.7232866287231445,0.02459547109901905,gpt2
+25,Tenisçilerin terapisti akşama kadar sessizce oturdu,condition_b,sg,pl,sg,0.8005437850952148,0.01660037599503994,gpt2
+25,Tenisçinin terapisti akşama kadar sessizce oturdular,condition_c,sg,sg,pl,1.7056093215942383,0.02687814086675644,gpt2
+25,Tenisçinin terapisti akşama kadar sessizce oturdu,condition_d,sg,sg,sg,0.7906762361526489,0.017110954970121384,gpt2
+26,Mankenlerin menajeri akşamki gösteriden önce kaçtılar,condition_a,sg,pl,pl,1.806402564048767,0.0025089173577725887,gpt2
+26,Mankenlerin menajeri akşamki gösteriden önce kaçtı,condition_b,sg,pl,sg,0.9327154755592346,0.0012640368659049273,gpt2
+26,Mankenin menajeri akşamki gösteriden önce kaçtılar,condition_c,sg,sg,pl,1.7946964502334595,0.003244532970711589,gpt2
+26,Mankenin menajeri akşamki gösteriden önce kaçtı,condition_d,sg,sg,sg,0.9327967166900635,0.0017571012722328305,gpt2
+28,Mimarların elemanı beklenmedik bir anda hastalandılar,condition_a,sg,pl,pl,1.7967860698699951,0.00822147261351347,gpt2
+28,Mimarların elemanı beklenmedik bir anda hastalandı,condition_b,sg,pl,sg,1.8209092617034912,0.013133097440004349,gpt2
+28,Mimarın elemanı beklenmedik bir anda hastalandılar,condition_c,sg,sg,pl,1.7982587814331055,0.006493812892585993,gpt2
+28,Mimarın elemanı beklenmedik bir anda hastalandı,condition_d,sg,sg,sg,1.8273919820785522,0.012124123051762581,gpt2
+29,İzcilerin lideri sert rüzgardan dolayı üşüdülar,condition_a,sg,pl,pl,2.768158197402954,0.004912751726806164,gpt2
+29,İzcilerin lideri sert rüzgardan dolayı üşüdü,condition_b,sg,pl,sg,1.8548678159713745,0.0028208736330270767,gpt2
+29,İzcinin lideri sert rüzgardan dolayı üşüdülar,condition_c,sg,sg,pl,2.7610185146331787,0.005230906885117292,gpt2
+29,İzcinin lideri sert rüzgardan dolayı üşüdü,condition_d,sg,sg,sg,1.8496593236923218,0.00290541909635067,gpt2
+30,Diplomatların misafiri yemekten sonra yine acıktılar,condition_a,sg,pl,pl,1.8109211921691895,0.013096864335238934,gpt2
+30,Diplomatların misafiri yemekten sonra yine acıktı,condition_b,sg,pl,sg,1.8253097534179688,0.013403821736574173,gpt2
+30,Diplomatın misafiri yemekten sonra yine acıktılar,condition_c,sg,sg,pl,1.8106796741485596,0.012805815786123276,gpt2
+30,Diplomatın misafiri yemekten sonra yine acıktı,condition_d,sg,sg,sg,1.8250863552093506,0.01318840030580759,gpt2
+31,Spikerlerin makyözü erken ödemeden dolayı sevindilar,condition_a,sg,pl,pl,2.8032643795013428,0.010869566351175308,gpt2
+31,Spikerlerin makyözü erken ödemeden dolayı sevindi,condition_b,sg,pl,sg,1.7991143465042114,0.005892076063901186,gpt2
+31,Spikerin makyözü erken ödemeden dolayı sevindilar,condition_c,sg,sg,pl,2.8065314292907715,0.009341348893940449,gpt2
+31,Spikerin makyözü erken ödemeden dolayı sevindi,condition_d,sg,sg,sg,1.819782018661499,0.005273895338177681,gpt2
+32,Aktörlerin psikoloğu mesaiden hemen sonra uzandılar,condition_a,sg,pl,pl,1.940289855003357,0.01145709864795208,gpt2
+32,Aktörlerin psikoloğu mesaiden hemen sonra uzandı,condition_b,sg,pl,sg,0.9309362173080444,0.013489708304405212,gpt2
+32,Aktörün psikoloğu mesaiden hemen sonra uzandılar,condition_c,sg,sg,pl,1.9413251876831055,0.009741995483636856,gpt2
+32,Aktörün psikoloğu mesaiden hemen sonra uzandı,condition_d,sg,sg,sg,0.9341956377029419,0.010820162482559681,gpt2
+33,Gazetecilerin stajyeri ilk denemede epey zorlandılar,condition_a,sg,pl,pl,2.581117868423462,0.04382650926709175,gpt2
+33,Gazetecilerin stajyeri ilk denemede epey zorlandı,condition_b,sg,pl,sg,1.7063745260238647,0.032078344374895096,gpt2
+33,Gazetecinin stajyeri ilk denemede epey zorlandılar,condition_c,sg,sg,pl,2.553738832473755,0.04763299599289894,gpt2
+33,Gazetecinin stajyeri ilk denemede epey zorlandı,condition_d,sg,sg,sg,1.6816927194595337,0.033738620579242706,gpt2
+34,Polislerin amiri geç bir vakitte kalktılar,condition_a,sg,pl,pl,1.898422122001648,0.0016835657879710197,gpt2
+34,Polislerin amiri geç bir vakitte kalktı,condition_b,sg,pl,sg,0.9084343910217285,0.0007714097737334669,gpt2
+34,Polisin amiri geç bir vakitte kalktılar,condition_c,sg,sg,pl,1.891882061958313,0.0022273322101682425,gpt2
+34,Polisin amiri geç bir vakitte kalktı,condition_d,sg,sg,sg,0.9035099148750305,0.0010768775828182697,gpt2
+35,Milyonerlerin ortağı müthiş bir ağrıyla uyandılar,condition_a,sg,pl,pl,1.8264117240905762,0.006935564801096916,gpt2
+35,Milyonerlerin ortağı müthiş bir ağrıyla uyandı,condition_b,sg,pl,sg,1.8094139099121094,0.006452674046158791,gpt2
+35,Milyonerin ortağı müthiş bir ağrıyla uyandılar,condition_c,sg,sg,pl,1.8201918601989746,0.0073122745379805565,gpt2
+35,Milyonerin ortağı müthiş bir ağrıyla uyandı,condition_d,sg,sg,sg,1.801824927330017,0.006970895454287529,gpt2
+36,Kadınların jinekoloğu boş bir caddede yürüdülar,condition_a,sg,pl,pl,1.7935917377471924,0.023786740377545357,gpt2
+36,Kadınların jinekoloğu boş bir caddede yürüdü,condition_b,sg,pl,sg,0.8347664475440979,0.01251960825175047,gpt2
+36,Kadının jinekoloğu boş bir caddede yürüdülar,condition_c,sg,sg,pl,1.8300875425338745,0.020019128918647766,gpt2
+36,Kadının jinekoloğu boş bir caddede yürüdü,condition_d,sg,sg,sg,0.869334876537323,0.00933675654232502,gpt2
+37,Politikacıların tercümanı toplantıdan sonra birden sarardılar,condition_a,sg,pl,pl,1.9404561519622803,0.009050448425114155,gpt2
+37,Politikacıların tercümanı toplantıdan sonra birden sarardı,condition_b,sg,pl,sg,1.9460175037384033,0.003806249238550663,gpt2
+37,Politikacının tercümanı toplantıdan sonra birden sarardılar,condition_c,sg,sg,pl,1.9305517673492432,0.011364378035068512,gpt2
+37,Politikacının tercümanı toplantıdan sonra birden sarardı,condition_d,sg,sg,sg,1.9391202926635742,0.004431490320712328,gpt2
+38,Mühendislerin işvereni yabancı bir ülkede kayboldular,condition_a,sg,pl,pl,1.7423006296157837,0.004966252483427525,gpt2
+38,Mühendislerin işvereni yabancı bir ülkede kayboldu,condition_b,sg,pl,sg,0.7845204472541809,0.002120489487424493,gpt2
+38,Mühendisin işvereni yabancı bir ülkede kayboldular,condition_c,sg,sg,pl,1.6882425546646118,0.0044438159093260765,gpt2
+38,Mühendisin işvereni yabancı bir ülkede kayboldu,condition_d,sg,sg,sg,0.7632173895835876,0.00184215500485152,gpt2
