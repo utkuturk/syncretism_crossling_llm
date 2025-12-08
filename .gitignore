@@ -1,0 +1,82 @@
+############################
+# Python
+############################
+
+__pycache__/
+syncretism/**/**
+
+# Jupyter
+.ipynb_checkpoints/
+.jupyter/
+
+
+############################
+# R / RStudio
+############################
+
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+.Rproj.user/
+*.Rproj
+
+# renv library cache (keep renv.lock tracked!)
+renv/library/
+renv/staging/
+
+############################
+# Large models & data
+############################
+
+# Model weights / checkpoints
+models/
+checkpoints/
+saved_models/
+*.ckpt
+*.pt
+*.bin
+*.h5
+*.onnx
+
+# Hugging Face / LLM caches
+.huggingface/
+huggingface/
+transformers_cache/
+cache/
+cache_dir/
+
+# Big raw data (optional — keep if you *only* want code in git)
+# data/
+data/old
+datasets/
+*.parquet
+*.feather
+*.hdf5
+*.gz
+*.zip
+*.tar
+*.tar.gz
+*.conllu
+*.txt
+
+############################
+# OS / Editor cruft
+############################
+
+# macOS
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.bak
