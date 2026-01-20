@@ -47,7 +47,8 @@ cache/
 cache_dir/
 
 # Big raw data (optional — keep if you *only* want code in git)
-# data/
+data/nsubj*
+!data/parts/*
 data/old
 datasets/
 *.parquet
@@ -94,3 +95,4 @@ Desktop.ini
 *.swo
 *.tmp
 *.bak
+data/nsubj_root_sentences_tr.csv

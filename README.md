@@ -57,6 +57,26 @@ We probe which attention heads best predict nsubj→root dependencies using larg
 └── text/                     # Paper (main.tex)
 ```
 
+## Large CSV Handling
+
+The `data/nsubj_root_sentences_*.csv` files are large. Use the helper scripts to split
+them into 50MB chunks and merge them back later.
+
+Split into 50MB parts (default):
+```bash
+bash scripts/split_nsubj.sh 50
+```
+
+Split into 50MB parts in a separate directory:
+```bash
+bash scripts/split_nsubj.sh 50 data/parts
+```
+
+Merge parts back into full CSVs:
+```bash
+bash scripts/merge_nsubj.sh data/parts data
+```
+
 ## Pipeline
 
 ### Step 1: Data Preparation (Complete)
