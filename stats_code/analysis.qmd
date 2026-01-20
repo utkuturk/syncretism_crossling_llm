@@ -1,0 +1,1105 @@
+---
+title: "Syncretism and Agreement Attraction in Transformer Language Models"
+subtitle: "Cross-linguistic Analysis of Attention, Surprisal, and Entropy"
+author: ""
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    theme: cosmo
+execute:
+  warning: false
+  message: false
+  cache: true
+---
+
+# Introduction
+
+## The Connection Between Surprisal, Attention, Entropy, and Agreement Attraction
+
+Agreement attraction is a well-documented phenomenon in human sentence processing where a noun that intervenes between a subject and verb can disrupt subject-verb agreement computation. This effect manifests as increased reading times and error rates when the intervening noun (attractor) differs in number from the head noun. For example:
+
+> *The key to the **cabinets** are on the table.* (Attractor: plural, Head: singular)
+
+Three computational measures from transformer language models can shed light on the mechanisms underlying agreement attraction:
+
+### Surprisal
+
+**Surprisal** ($-\log P(\text{word}|\text{context})$) measures how unexpected a word is given its context. In the context of agreement attraction:
+
+- **Higher surprisal** at the verb indicates the model finds the verb form less predictable
+- If models show **reduced surprisal** for agreement errors in mismatch conditions (plural attractor + singular verb error), this mirrors human attraction effects
+- The linking hypothesis: **Surprisal ≈ Processing Difficulty** (Levy, 2008; Hale, 2001)
+
+### Attention to Head vs. Attractor
+
+**Attention patterns** from transformer models reveal which tokens the model "relies on" when predicting the verb:
+
+- **Attention to head noun**: Models that correctly attend to the grammatical subject should show higher attention to the head
+- **Attention to attractor**: Increased attention to the attractor during verb prediction may indicate susceptibility to attraction
+- **Attention difference** (Head - Attractor): A key metric comparing the relative weighting of the two noun phrases
+
+The prediction: If LLMs exhibit human-like attraction, they should show **reduced attention to the head** (or increased attention to the attractor) in mismatch conditions.
+
+### Attention Entropy
+
+**Entropy** of the attention distribution measures how focused or diffuse the model's attention is:
+
+$$H(\text{attention}) = -\sum_i p_i \log p_i$$
+
+- **Low entropy**: Focused attention on few tokens (confident about the source of agreement)
+- **High entropy**: Diffuse attention across many tokens (uncertain about agreement controller)
+
+The prediction: **Higher entropy** in mismatch conditions may indicate uncertainty about which noun controls agreement, paralleling the human difficulty with these constructions.
+
+### The Syncretism Hypothesis
+
+**Case syncretism** (when different grammatical cases share the same surface form) should modulate attraction effects:
+
+- **Syncretic forms**: The attractor's case is ambiguous (e.g., nominative/accusative syncretism in Turkish plural nouns)
+- **Non-syncretic forms**: The attractor is unambiguously marked for a non-subject case
+
+**Prediction**: Non-syncretic (distinctively case-marked) attractors should:
+1. Reduce attraction effects (lower surprisal differences)
+2. Increase attention to the true head (higher attention difference)
+3. Reduce entropy (more confident agreement computation)
+
+```{r setup}
+#| label: setup
+#| code-fold: false
+
+library(tidyverse)
+library(brms)
+library(ggh4x)
+library(patchwork)
+library(knitr)
+library(kableExtra)
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Custom theme for consistent plotting
+theme_paper <- function() {
+  theme_classic() +
+    theme(
+      strip.background = element_blank(),
+      strip.text = element_text(face = "bold"),
+      legend.position = "bottom"
+    )
+}
+```
+
+# Behavioral Findings from Human Studies
+
+This section summarizes key behavioral findings on agreement attraction across our four target languages. These findings serve as the benchmarks against which we compare LLM predictions.
+
+## Summary of Human Agreement Attraction Studies
+
+```{r behavioral-summary-table}
+#| label: behavioral-summary-table
+
+# Enter behavioral findings here
+# Measure can be: "RT" (reading time), "Error" (error rate %), or "SPR" (self-paced reading)
+
+behavioral_findings <- tribble(
+  ~Language, ~Study, ~Measure, ~N, ~Attraction_Effect, ~Syncretism_Effect, ~Key_Finding,
+  # --- ENGLISH ---
+  "English", "Wagers et al. (2009)", "Error %", 48, "Yes (30% increase)", "N/A", "Strong attraction in ungrammatical, weak in grammatical",
+  "English", "Lago et al. (2015)", "RT (ms)", 64, "Yes (~50ms)", "N/A", "Attraction facilitates ungrammatical verbs",
+  "English", "Dillon et al. (2013)", "RT (ms)", 40, "Yes", "N/A", "Attraction in agreement but not reflexives",
+
+
+  # --- TURKISH ---
+  "Turkish", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]",
+
+  # --- GERMAN ---
+  "German", "Hartsuiker et al. (2003)", "Error %", 24, "Yes", "N/A", "Cross-linguistic attraction in production",
+  "German", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]",
+
+  # --- RUSSIAN ---
+  "Russian", "Slioussar & Malko (2016)", "Error %", 48, "Yes", "Yes (reduced)", "Case marking reduces attraction",
+  "Russian", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]"
+)
+
+behavioral_findings %>%
+  kable(
+    caption = "Summary of Human Agreement Attraction Studies",
+    col.names = c("Language", "Study", "Measure", "N", "Attraction Effect", "Syncretism Effect", "Key Finding")
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(7, width = "25em")
+```
+
+## Detailed Behavioral Data by Condition
+
+### English Behavioral Data
+
+```{r english-behavioral}
+#| label: english-behavioral
+
+# Source: Wagers et al. (2009) - Accuracy data (% correct)
+# Experiment 1: Basic attraction paradigm
+english_behavioral <- tribble(
+  ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
+  # Grammatical conditions (singular verb with singular head)
+  "SG-SG-SG", "sg", "sg", "sg", "yes", 93, 3.0, "Wagers et al. (2009)",
+  "SG-PL-SG", "sg", "pl", "sg", "yes", 91, 3.7, "Wagers et al. (2009)",
+  # Ungrammatical conditions (plural verb with singular head)
+  "SG-SG-PL", "sg", "sg", "pl", "yes", 25, 7.0, "Wagers et al. (2009)",
+  "SG-PL-PL", "sg", "pl", "pl", "yes", 55, 6.0, "Wagers et al. (2009)"
+) %>%
+  mutate(
+    Language = "English",
+    Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
+    Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical")
+  )
+
+english_behavioral %>%
+  select(Condition, Grammaticality, Match, Mean, SE, Source) %>%
+  kable(
+    caption = "English Behavioral Data: Accuracy (% correct)",
+    digits = 1
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+### Turkish Behavioral Data
+
+```{r turkish-behavioral}
+#| label: turkish-behavioral
+
+# Enter Turkish behavioral data here
+# If you have data on syncretism effects, include both syncretic and non-syncretic conditions
+turkish_behavioral <- tribble(
+  ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
+  # Syncretic conditions (nominative-accusative syncretism)
+  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]",
+  # Non-syncretic conditions (distinctive case marking)
+  "NSYN-SG-SG-SG", "sg", "sg", "sg", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", NA, NA, "[Enter source]"
+) %>%
+  mutate(
+    Language = "Turkish",
+    Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
+    Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical"),
+    Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+  )
+
+turkish_behavioral %>%
+  filter(!is.na(Mean)) %>%
+  select(Condition, Syncretism, Grammaticality, Match, Mean, SE, Source) %>%
+  kable(
+    caption = "Turkish Behavioral Data: [Enter measure]",
+    digits = 1
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+### German Behavioral Data
+
+```{r german-behavioral}
+#| label: german-behavioral
+
+german_behavioral <- tribble(
+  ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
+  # Enter German behavioral data
+  "SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
+  "SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
+  "SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
+  "SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]"
+) %>%
+  mutate(
+    Language = "German",
+    Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
+    Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical")
+  )
+
+german_behavioral %>%
+  filter(!is.na(Mean)) %>%
+  select(Condition, Grammaticality, Match, Mean, SE, Source) %>%
+  kable(
+    caption = "German Behavioral Data: [Enter measure]",
+    digits = 1
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+### Russian Behavioral Data
+
+```{r russian-behavioral}
+#| label: russian-behavioral
+
+russian_behavioral <- tribble(
+  ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
+  # Syncretic conditions
+  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
+  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]",
+  # Non-syncretic conditions
+  "NSYN-SG-SG-SG", "sg", "sg", "sg", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", NA, NA, "[Enter source]",
+  "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", NA, NA, "[Enter source]"
+) %>%
+  mutate(
+    Language = "Russian",
+    Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
+    Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical"),
+    Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+  )
+
+russian_behavioral %>%
+  filter(!is.na(Mean)) %>%
+  select(Condition, Syncretism, Grammaticality, Match, Mean, SE, Source) %>%
+  kable(
+    caption = "Russian Behavioral Data: [Enter measure]",
+    digits = 1
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+# Methodology
+
+## Data Pipeline Overview
+
+Our analysis pipeline extracts attention patterns and surprisal values from transformer language models (BERT and GPT-2) across four languages.
+
+```{mermaid}
+%%| fig-width: 8
+flowchart TD
+    A[Leipzig Corpus<br/>1M sentences] --> B[UDPipe Parsing]
+    B --> C[CoNLL-U Files]
+    C --> D[build_dataset.py]
+    D --> E[nsubj-root sentence pairs]
+    E --> F[Attention Extraction]
+    E --> G[Surprisal Calculation]
+    F --> H[Per-head accuracy<br/>Voita method]
+    F --> I[Multi-head aggregation]
+    F --> J[Leftward attention]
+    G --> K[Causal surprisal<br/>GPT-2]
+    G --> L[Masked surprisal<br/>BERT]
+    H --> M[Statistical Analysis]
+    I --> M
+    J --> M
+    K --> M
+    L --> M
+```
+
+## Corpus and Parsing
+
+### Leipzig Corpus
+
+We use the **Leipzig Corpora Collection** (Goldhahn et al., 2012) which provides:
+
+- **1 million sentences** per language
+- Web-crawled text representing natural language use
+- Sentence-level segmentation
+
+### UDPipe Parsing
+
+Sentences are parsed using **UDPipe** (Straka & Straková, 2017), which provides:
+
+- Universal Dependencies annotation
+- Part-of-speech tagging
+- Dependency parsing (including `nsubj` and `root` relations)
+
+```{r udpipe-accuracy}
+#| label: udpipe-accuracy
+
+# UDPipe accuracy metrics from official benchmarks (UD 2.5 models)
+# Source: https://ufal.mff.cuni.cz/udpipe/2/models
+
+udpipe_accuracy <- tribble(
+  ~Language, ~Model, ~Tokenization, ~UPOS, ~UAS, ~LAS,
+  "English", "english-ewt-ud-2.5", 99.0, 95.4, 87.5, 84.8,
+  "Turkish", "turkish-imst-ud-2.5", 97.8, 93.6, 65.7, 58.3,
+  "German", "german-gsd-ud-2.5", 99.6, 94.0, 85.4, 81.0,
+  "Russian", "russian-syntagrus-ud-2.5", 99.5, 98.3, 92.0, 90.0
+)
+
+udpipe_accuracy %>%
+  kable(
+    caption = "UDPipe Model Accuracy (UD 2.5 Test Sets)",
+    col.names = c("Language", "Model", "Tokenization", "UPOS", "UAS", "LAS"),
+    digits = 1
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  add_footnote(
+    c("UPOS = Universal POS accuracy",
+      "UAS = Unlabeled Attachment Score",
+      "LAS = Labeled Attachment Score"),
+    notation = "none"
+  )
+```
+
+::: {.callout-note}
+Turkish shows lower parsing accuracy due to agglutinative morphology and complex word order. This may affect the quality of extracted nsubj-root pairs.
+:::
+
+## Transformer Models
+
+```{r model-specs}
+#| label: model-specs
+
+model_specs <- tribble(
+  ~Language, ~Model_Type, ~Model_Name, ~Layers, ~Heads, ~Parameters,
+  "English", "BERT", "bert-base-uncased", 12, 12, "110M",
+  "English", "GPT-2", "gpt2", 12, 12, "117M",
+  "Turkish", "BERT", "dbmdz/bert-base-turkish-128k-cased", 12, 12, "184M",
+  "Turkish", "GPT-2", "redrussianarmy/gpt2-turkish-cased", 12, 12, "124M",
+  "German", "BERT", "bert-base-german-cased", 12, 12, "110M",
+  "Russian", "BERT", "DeepPavlov/rubert-base-cased", 12, 12, "180M"
+)
+
+model_specs %>%
+  kable(
+    caption = "Transformer Models Used",
+    col.names = c("Language", "Type", "HuggingFace Model", "Layers", "Heads", "Parameters")
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Attention Extraction Methods
+
+We employ multiple attention extraction methods to address the limitations of single-head analysis:
+
+### 1. Voita Per-Head Accuracy (Standard)
+
+Following Voita et al. (2019), we measure per-head accuracy in predicting syntactic dependencies:
+
+- For each sentence with an nsubj-root dependency
+- For each attention head (layer × head)
+- Check if `argmax(attention[source, :]) == target`
+- Accuracy = proportion of correct predictions
+
+**Direction**: `nsubj → root` (linguistic convention)
+
+### 2. Leftward Attention
+
+An alternative direction that often yields higher accuracy for BERT:
+
+- **Source** = rightmost token (of nsubj/root pair)
+- **Target** = leftmost token
+
+This mirrors the causal (left-to-right) attention pattern of autoregressive models and can capture backward-looking dependencies in BERT.
+
+### 3. Multi-Head Aggregation
+
+BERT's bidirectional attention distributes information across many heads. We aggregate using:
+
+| Method | Description |
+|--------|-------------|
+| **Layer-averaged** | Average attention across all heads in a layer, then argmax |
+| **Max-pooled** | Take max attention across heads, then argmax |
+| **Top-K rank** | Check if target is in top-K attended tokens (K = 1, 3, 5, 10) |
+
+### 4. Attention Entropy
+
+Entropy of the attention distribution measures focus vs. diffusion:
+
+$$H = -\sum_{j=1}^{n} p_j \log p_j$$
+
+where $p_j$ is the attention weight to position $j$.
+
+## Surprisal Calculation
+
+### GPT-2 (Causal/Autoregressive)
+
+For autoregressive models, surprisal is straightforward:
+
+$$\text{Surprisal}(w_t) = -\log P(w_t | w_1, \ldots, w_{t-1})$$
+
+The model naturally predicts the next token given all previous tokens.
+
+### BERT (Masked Language Model)
+
+BERT is bidirectional and cannot directly compute left-to-right surprisal. We use **masked surprisal**:
+
+1. **Mask** the target word(s) with `[MASK]` tokens
+2. Run the model on the masked sequence
+3. Compute $-\log P(\text{original word} | \text{masked context})$
+
+This measures how predictable the word is from its **bidirectional** context, excluding the word itself.
+
+```{r surprisal-comparison}
+#| label: surprisal-comparison
+
+surprisal_methods <- tribble(
+  ~Model, ~Method, ~Context, ~Interpretation,
+  "GPT-2", "Causal", "Left context only", "How predictable is the word given what came before?",
+  "BERT", "Masked", "Bidirectional (excluding target)", "How predictable is the word from surrounding context?"
+)
+
+surprisal_methods %>%
+  kable(caption = "Surprisal Calculation Methods") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+# Data Loading and Preparation
+
+```{r load-data}
+#| label: load-data
+
+# === STIMULI DATA ===
+# This is the experimental stimuli with controlled conditions
+
+# Check for stimuli file
+stimuli_path <- "../stimuli/tr_rus_all_conditions.csv"
+if (file.exists(stimuli_path)) {
+  stimuli <- read_csv(stimuli_path, show_col_types = FALSE)
+  cat("Loaded stimuli:", nrow(stimuli), "items\n")
+} else {
+  cat("Stimuli file not found at:", stimuli_path, "\n")
+  stimuli <- tibble()
+}
+
+# === LLM RESULTS ===
+# Load results from attention and surprisal analysis (when available)
+
+# Placeholder paths - update when results are generated
+result_paths <- list(
+  # Multihead results
+  multihead_english = "../results/multihead/bert_multihead_per_head_english.csv",
+  multihead_turkish = "../results/multihead/bert_multihead_per_head_turkish.csv",
+  multihead_german = "../results/multihead/bert_multihead_per_head_german.csv",
+  multihead_russian = "../results/multihead/bert_multihead_per_head_russian.csv",
+
+  # Leftward results
+  leftward_english = "../results/leftward/bert_leftward_english.csv",
+  leftward_turkish = "../results/leftward/bert_leftward_turkish.csv",
+  leftward_german = "../results/leftward/bert_leftward_german.csv",
+  leftward_russian = "../results/leftward/bert_leftward_russian.csv",
+
+  # Attention results (on stimuli)
+  attention_turkish = "../llm_code/turkish_attention/results/turkish_attention_results.csv",
+  attention_english = "../llm_code/english_attention/results/english_attention_results.csv",
+  attention_german = "../llm_code/german_attention/results/german_attention_results.csv",
+  attention_russian = "../llm_code/russian_attention/results/russian_attention_results.csv",
+
+  # Surprisal results (on stimuli)
+  surprisal_turkish = "../llm_code/turkish_attention/results/turkish_surprisal_results.csv",
+  surprisal_english = "../llm_code/english_attention/results/english_surprisal_results.csv",
+  surprisal_german = "../llm_code/german_attention/results/german_surprisal_results.csv",
+  surprisal_russian = "../llm_code/russian_attention/results/russian_surprisal_results.csv"
+)
+
+# Function to safely load CSV
+safe_read <- function(path, name) {
+  if (file.exists(path)) {
+    df <- read_csv(path, show_col_types = FALSE)
+    cat("Loaded", name, ":", nrow(df), "rows\n")
+    return(df)
+  } else {
+    cat("Not found:", name, "\n")
+    return(tibble())
+  }
+}
+
+# Load available results
+multihead_results <- bind_rows(
+  safe_read(result_paths$multihead_english, "multihead_english"),
+  safe_read(result_paths$multihead_turkish, "multihead_turkish"),
+  safe_read(result_paths$multihead_german, "multihead_german"),
+  safe_read(result_paths$multihead_russian, "multihead_russian")
+)
+
+leftward_results <- bind_rows(
+  safe_read(result_paths$leftward_english, "leftward_english"),
+  safe_read(result_paths$leftward_turkish, "leftward_turkish"),
+  safe_read(result_paths$leftward_german, "leftward_german"),
+  safe_read(result_paths$leftward_russian, "leftward_russian")
+)
+
+attention_results <- bind_rows(
+  safe_read(result_paths$attention_turkish, "attention_turkish"),
+  safe_read(result_paths$attention_english, "attention_english"),
+  safe_read(result_paths$attention_german, "attention_german"),
+  safe_read(result_paths$attention_russian, "attention_russian")
+)
+
+surprisal_results <- bind_rows(
+  safe_read(result_paths$surprisal_turkish, "surprisal_turkish"),
+  safe_read(result_paths$surprisal_english, "surprisal_english"),
+  safe_read(result_paths$surprisal_german, "surprisal_german"),
+  safe_read(result_paths$surprisal_russian, "surprisal_russian")
+)
+```
+
+# Results
+
+## Head Selection: Voita Method Accuracy
+
+### Per-Head Accuracy by Language and Direction
+
+```{r voita-accuracy-plot}
+#| label: voita-accuracy-plot
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(multihead_results) > 0) {
+  # Plot per-head accuracy heatmap
+  multihead_results %>%
+    ggplot(aes(x = head, y = layer, fill = accuracy)) +
+    geom_tile() +
+    scale_fill_viridis_c(option = "plasma", limits = c(0, 1)) +
+    facet_grid(language ~ direction) +
+    labs(
+      title = "Per-Head Accuracy for nsubj-root Prediction",
+      x = "Head",
+      y = "Layer",
+      fill = "Accuracy"
+    ) +
+    theme_paper() +
+    coord_equal()
+} else {
+  cat("Multihead results not yet available. Run the SLURM jobs first.\n")
+}
+```
+
+### Comparison: Leftward vs. Standard Direction
+
+```{r direction-comparison}
+#| label: direction-comparison
+#| fig-width: 8
+#| fig-height: 5
+
+if (nrow(multihead_results) > 0) {
+  direction_summary <- multihead_results %>%
+    group_by(language, direction) %>%
+    summarise(
+      mean_acc = mean(accuracy),
+      max_acc = max(accuracy),
+      best_layer = layer[which.max(accuracy)],
+      best_head = head[which.max(accuracy)],
+      .groups = "drop"
+    )
+
+  direction_summary %>%
+    ggplot(aes(x = language, y = max_acc, fill = direction)) +
+    geom_col(position = "dodge") +
+    geom_text(aes(label = sprintf("L%d-H%d", best_layer, best_head)),
+              position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+    labs(
+      title = "Best Head Accuracy by Language and Direction",
+      subtitle = "Labels show best (layer, head) combination",
+      x = "Language",
+      y = "Max Accuracy",
+      fill = "Direction"
+    ) +
+    theme_paper() +
+    scale_y_continuous(limits = c(0, 1), labels = scales::percent)
+} else {
+  cat("Results not yet available.\n")
+}
+```
+
+## Attention Analysis on Experimental Stimuli
+
+### Attention to Head vs. Attractor
+
+```{r attention-diff-by-condition}
+#| label: attention-diff-by-condition
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(attention_results) > 0 && "attention_diff" %in% names(attention_results)) {
+
+  # Prepare data with condition parsing
+  att_plot_data <- attention_results %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type)
+    )
+
+  # Check if condition columns exist
+  if ("attr_num" %in% names(att_plot_data) && "verb_num" %in% names(att_plot_data)) {
+    att_plot_data <- att_plot_data %>%
+      mutate(
+        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+      )
+
+    # Plot attention difference by condition
+    att_summary <- att_plot_data %>%
+      group_by(Language, Model, Match, Grammaticality, Syncretism) %>%
+      summarise(
+        mean_diff = mean(attention_diff, na.rm = TRUE),
+        se_diff = sd(attention_diff, na.rm = TRUE) / sqrt(n()),
+        n = n(),
+        .groups = "drop"
+      )
+
+    ggplot(att_summary, aes(x = Match, y = mean_diff, color = Syncretism, group = Syncretism)) +
+      geom_point(position = position_dodge(width = 0.3), size = 3) +
+      geom_line(position = position_dodge(width = 0.3)) +
+      geom_errorbar(
+        aes(ymin = mean_diff - se_diff, ymax = mean_diff + se_diff),
+        width = 0.1, position = position_dodge(width = 0.3)
+      ) +
+      geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+      facet_grid(Model ~ Language + Grammaticality) +
+      labs(
+        title = "Attention Difference (Head - Attractor) by Condition",
+        subtitle = "Positive values = more attention to head noun",
+        x = "Head-Attractor Number Match",
+        y = "Attention Difference",
+        color = "Syncretism"
+      ) +
+      theme_paper()
+  } else {
+    cat("Condition columns not found in attention results.\n")
+  }
+} else {
+  cat("Attention results not yet available or missing attention_diff column.\n")
+}
+```
+
+### Attention Entropy by Condition
+
+```{r entropy-by-condition}
+#| label: entropy-by-condition
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(attention_results) > 0 && "attention_entropy" %in% names(attention_results)) {
+
+  att_plot_data <- attention_results %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type)
+    )
+
+  if ("attr_num" %in% names(att_plot_data) && "verb_num" %in% names(att_plot_data)) {
+    att_plot_data <- att_plot_data %>%
+      mutate(
+        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+      )
+
+    entropy_summary <- att_plot_data %>%
+      group_by(Language, Model, Match, Grammaticality, Syncretism) %>%
+      summarise(
+        mean_entropy = mean(attention_entropy, na.rm = TRUE),
+        se_entropy = sd(attention_entropy, na.rm = TRUE) / sqrt(n()),
+        n = n(),
+        .groups = "drop"
+      )
+
+    ggplot(entropy_summary, aes(x = Match, y = mean_entropy, color = Syncretism, group = Syncretism)) +
+      geom_point(position = position_dodge(width = 0.3), size = 3) +
+      geom_line(position = position_dodge(width = 0.3)) +
+      geom_errorbar(
+        aes(ymin = mean_entropy - se_entropy, ymax = mean_entropy + se_entropy),
+        width = 0.1, position = position_dodge(width = 0.3)
+      ) +
+      facet_grid(Model ~ Language + Grammaticality) +
+      labs(
+        title = "Attention Entropy by Condition",
+        subtitle = "Higher entropy = more diffuse attention distribution",
+        x = "Head-Attractor Number Match",
+        y = "Attention Entropy (nats)",
+        color = "Syncretism"
+      ) +
+      theme_paper()
+  }
+} else {
+  cat("Entropy results not yet available.\n")
+}
+```
+
+## Surprisal Analysis
+
+### Surprisal at Verb by Condition
+
+```{r surprisal-by-condition}
+#| label: surprisal-by-condition
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(surprisal_results) > 0 && "surprisal" %in% names(surprisal_results)) {
+
+  surp_plot_data <- surprisal_results %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type)
+    )
+
+  if ("attr_num" %in% names(surp_plot_data) && "verb_num" %in% names(surp_plot_data)) {
+    surp_plot_data <- surp_plot_data %>%
+      mutate(
+        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+      )
+
+    surp_summary <- surp_plot_data %>%
+      group_by(Language, Model, Match, Grammaticality, Syncretism) %>%
+      summarise(
+        mean_surp = mean(surprisal, na.rm = TRUE),
+        se_surp = sd(surprisal, na.rm = TRUE) / sqrt(n()),
+        n = n(),
+        .groups = "drop"
+      )
+
+    ggplot(surp_summary, aes(x = Match, y = mean_surp, color = Syncretism, group = Syncretism)) +
+      geom_point(position = position_dodge(width = 0.3), size = 3) +
+      geom_line(position = position_dodge(width = 0.3)) +
+      geom_errorbar(
+        aes(ymin = mean_surp - se_surp, ymax = mean_surp + se_surp),
+        width = 0.1, position = position_dodge(width = 0.3)
+      ) +
+      facet_grid(Model ~ Language + Grammaticality) +
+      labs(
+        title = "Surprisal at Verb by Condition",
+        subtitle = "Lower surprisal = verb form more expected",
+        x = "Head-Attractor Number Match",
+        y = "Surprisal (nats)",
+        color = "Syncretism"
+      ) +
+      theme_paper()
+  }
+} else {
+  cat("Surprisal results not yet available.\n")
+}
+```
+
+# Comparison: LLM Measures vs. Human Attraction
+
+This section compares each LLM measure to human behavioral findings on agreement attraction.
+
+## Attention Difference vs. Human Attraction
+
+```{r attention-vs-attraction}
+#| label: attention-vs-attraction
+#| fig-width: 10
+#| fig-height: 8
+
+# Combine behavioral and LLM data for comparison
+# This assumes both datasets are available and properly formatted
+
+if (nrow(attention_results) > 0) {
+
+  # Calculate LLM attraction effects (mismatch - match)
+  llm_attention_effects <- attention_results %>%
+    filter(!is.na(attention_diff)) %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type),
+      Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+      Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+      Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+    ) %>%
+    group_by(Language, Model, Grammaticality, Syncretism, Match) %>%
+    summarise(mean_att = mean(attention_diff, na.rm = TRUE), .groups = "drop") %>%
+    pivot_wider(names_from = Match, values_from = mean_att) %>%
+    mutate(
+      att_effect = Mismatch - Match,  # Mismatch - Match (should be negative if attraction)
+      source = paste0("LLM-", Model),
+      measure = "Attention Diff"
+    )
+
+  # For now, use English behavioral as example
+  human_attraction_effects <- english_behavioral %>%
+    filter(!is.na(Mean)) %>%
+    group_by(Grammaticality, Match) %>%
+    summarise(mean_val = mean(Mean), .groups = "drop") %>%
+    pivot_wider(names_from = Match, values_from = mean_val) %>%
+    mutate(
+      attraction_effect = Match - Mismatch,  # For accuracy: Match > Mismatch means attraction
+      Language = "English",
+      source = "Human",
+      measure = "Accuracy (%)"
+    )
+
+  # Plot side-by-side
+  p1 <- llm_attention_effects %>%
+    ggplot(aes(x = Language, y = att_effect, fill = Syncretism)) +
+    geom_col(position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    facet_grid(source ~ Grammaticality) +
+    labs(
+      title = "LLM Attention Difference Effect",
+      subtitle = "(Mismatch - Match): Negative = attention shifts away from head",
+      x = "", y = "Attention Effect"
+    ) +
+    theme_paper() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+  p2 <- human_attraction_effects %>%
+    ggplot(aes(x = Language, y = attraction_effect, fill = "Human")) +
+    geom_col() +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    facet_wrap(~Grammaticality) +
+    labs(
+      title = "Human Attraction Effect",
+      subtitle = "(Match - Mismatch Accuracy): Positive = attraction errors",
+      x = "", y = "Accuracy Difference (%)"
+    ) +
+    theme_paper() +
+    guides(fill = "none")
+
+  p1 / p2 + plot_layout(heights = c(2, 1))
+
+} else {
+  cat("Results not yet available for comparison.\n")
+}
+```
+
+## Entropy vs. Human Attraction
+
+```{r entropy-vs-attraction}
+#| label: entropy-vs-attraction
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(attention_results) > 0 && "attention_entropy" %in% names(attention_results)) {
+
+  llm_entropy_effects <- attention_results %>%
+    filter(!is.na(attention_entropy)) %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type),
+      Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+      Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+      Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+    ) %>%
+    group_by(Language, Model, Grammaticality, Syncretism, Match) %>%
+    summarise(mean_entropy = mean(attention_entropy, na.rm = TRUE), .groups = "drop") %>%
+    pivot_wider(names_from = Match, values_from = mean_entropy) %>%
+    mutate(
+      entropy_effect = Mismatch - Match  # Positive = higher entropy in mismatch (uncertainty)
+    )
+
+  ggplot(llm_entropy_effects, aes(x = Language, y = entropy_effect, fill = Syncretism)) +
+    geom_col(position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    facet_grid(Model ~ Grammaticality) +
+    labs(
+      title = "Entropy Effect (Mismatch - Match)",
+      subtitle = "Positive = higher uncertainty in mismatch conditions",
+      x = "Language",
+      y = "Entropy Difference (nats)",
+      fill = "Syncretism"
+    ) +
+    theme_paper() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+} else {
+  cat("Entropy results not yet available.\n")
+}
+```
+
+## Surprisal vs. Human Attraction
+
+```{r surprisal-vs-attraction}
+#| label: surprisal-vs-attraction
+#| fig-width: 10
+#| fig-height: 6
+
+if (nrow(surprisal_results) > 0) {
+
+  llm_surprisal_effects <- surprisal_results %>%
+    filter(!is.na(surprisal)) %>%
+    mutate(
+      Language = case_when(
+        lg == "turkish" ~ "Turkish",
+        lg == "russian" ~ "Russian",
+        lg == "english" ~ "English",
+        lg == "german" ~ "German",
+        TRUE ~ lg
+      ),
+      Model = toupper(model_type),
+      Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
+      Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
+      Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+    ) %>%
+    group_by(Language, Model, Grammaticality, Syncretism, Match) %>%
+    summarise(mean_surp = mean(surprisal, na.rm = TRUE), .groups = "drop") %>%
+    pivot_wider(names_from = Match, values_from = mean_surp) %>%
+    mutate(
+      surp_effect = Match - Mismatch  # Positive = lower surprisal in mismatch (attraction)
+    )
+
+  ggplot(llm_surprisal_effects, aes(x = Language, y = surp_effect, fill = Syncretism)) +
+    geom_col(position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    facet_grid(Model ~ Grammaticality) +
+    labs(
+      title = "Surprisal Effect (Match - Mismatch)",
+      subtitle = "Positive = lower surprisal in mismatch (facilitatory attraction)",
+      x = "Language",
+      y = "Surprisal Difference (nats)",
+      fill = "Syncretism"
+    ) +
+    theme_paper() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+} else {
+  cat("Surprisal results not yet available.\n")
+}
+```
+
+# Summary: Comparison by Attention Type
+
+```{r summary-all-methods}
+#| label: summary-all-methods
+#| fig-width: 12
+#| fig-height: 10
+
+# This section will combine all attention types once multihead and leftward results are available
+
+if (nrow(attention_results) > 0) {
+
+  # Placeholder for combining standard, multihead, and leftward attention
+  cat("Summary comparison across attention methods will be available once all SLURM jobs complete.\n\n")
+
+  cat("Expected comparisons:\n")
+  cat("1. Standard Voita attention vs. Human attraction\n")
+  cat("2. Leftward attention vs. Human attraction\n")
+  cat("3. Multi-head aggregated attention vs. Human attraction\n")
+  cat("4. Entropy (all methods) vs. Human attraction\n")
+  cat("5. Surprisal (causal vs. masked) vs. Human attraction\n")
+
+} else {
+  cat("Run the SLURM jobs to generate results for comparison.\n")
+}
+```
+
+# Statistical Models
+
+## Bayesian Mixed-Effects Models
+
+```{r helper-functions}
+#| label: helper-functions
+
+# Wrapper for brms model fitting
+my_brms <- function(my_formula, my_data, file_name = NULL) {
+  m <- brm(
+    formula = my_formula,
+    data = my_data,
+    family = gaussian(),
+    chains = 4,
+    cores = 4,
+    iter = 2000,
+    seed = 42,
+    file = file_name
+  )
+  return(m)
+}
+
+# Report posterior probability for a coefficient
+brms_p <- function(fit, coef, dir = "less") {
+  h <- hypothesis(fit, paste0(coef, ifelse(dir == "less", " < 0", " > 0")))
+  prob <- h$hypothesis$Post.Prob
+  sprintf("P(β %s 0) = %.3f", ifelse(dir == "less", "<", ">"), prob)
+}
+
+# Full model summary with posterior probabilities
+full_brms_p <- function(fit) {
+  results <- data.frame(
+    term = character(),
+    estimate = numeric(),
+    ci_lower = numeric(),
+    ci_upper = numeric(),
+    prob_less_0 = numeric(),
+    significant = character()
+  )
+
+  fe <- fixef(fit)
+
+  for (t in rownames(fe)) {
+    h <- hypothesis(fit, paste0(t, " < 0"))
+    prob <- h$hypothesis$Post.Prob
+    star <- if (prob >= 0.95 | prob <= 0.05) "**" else if (prob >= 0.89 | prob <= 0.11) "*" else ""
+
+    results <- rbind(results, data.frame(
+      term = t,
+      estimate = fe[t, "Estimate"],
+      ci_lower = fe[t, "Q2.5"],
+      ci_upper = fe[t, "Q97.5"],
+      prob_less_0 = prob,
+      significant = star
+    ))
+  }
+  return(results)
+}
+```
+
+## Model Specifications
+
+Models will be fit once results are available:
+
+```{r model-specs-text}
+#| label: model-specs-text
+#| eval: false
+
+# Attention difference model
+# DV: attention_diff (head - attractor attention)
+# IVs: match (head-attractor number match), grammaticality, syncretism, language
+# Random: item
+
+model_attention <- my_brms(
+  attention_diff ~ match * grammaticality * syncretism * language + (1 | item),
+  data = attention_data
+)
+
+# Entropy model
+model_entropy <- my_brms(
+  attention_entropy ~ match * grammaticality * syncretism * language + (1 | item),
+  data = attention_data
+)
+
+# Surprisal model
+model_surprisal <- my_brms(
+  surprisal ~ match * grammaticality * syncretism * language + (1 | item),
+  data = surprisal_data
+)
+```
+
+# Session Info
+
+```{r session-info}
+#| label: session-info
+
+sessionInfo()
+```

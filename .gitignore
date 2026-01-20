@@ -61,6 +61,20 @@ datasets/
 *.txt
 
 ############################
+# Generated outputs / backups
+############################
+
+figures/
+# results/
+test_results/
+llm_code/**/results/
+papers/
+text/*.pdf
+backup_*/
+slurm_jobs/
+test_*
+
+############################
 # OS / Editor cruft
 ############################
 
