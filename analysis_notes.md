@@ -41,9 +41,25 @@ English/German/Turkish choices look standard. The only one I would double-check 
 
 Ryu and Lewis emphasize attention diffuseness (entropy), not only attention to specific targets. You already compute entropy in the attention scripts, but if it is not used downstream, consider surfacing it explicitly in the analysis or at least reporting it as a secondary metric.
 
-## Single best head vs top-k
+## Single best head vs top-k ✅ ADDRESSED
 
-Using a single best head is a known limitation. Many papers either analyze all heads or use top-k heads / weighted combinations. If you keep single-head selection, it is worth stating explicitly that agreement information is distributed and that single-head results are a proxy.
+~~Using a single best head is a known limitation. Many papers either analyze all heads or use top-k heads / weighted combinations. If you keep single-head selection, it is worth stating explicitly that agreement information is distributed and that single-head results are a proxy.~~
+
+**Status:** Addressed with multihead analysis (`voita_multihead.py`). We now provide:
+
+1. **Per-head accuracy** (original Voita method) — near-zero for BERT with `nsubj → root`
+2. **Layer-averaged attention** — averages across all 12 heads per layer
+3. **Max-pooled attention** — takes max attention across heads per layer
+4. **Top-K ranking** — checks if target is in top 1, 3, 5, or 10 attended tokens
+
+**Key finding:** Top-5 ranking achieves 48–69% accuracy across languages, confirming that BERT *does* encode nsubj dependencies but distributes them across multiple heads rather than localizing to single heads.
+
+| Language | Single-Head (nsubj→root) | Top-5 Ranking |
+|----------|--------------------------|---------------|
+| English  | <0.01%                   | 63.1%         |
+| German   | <0.01%                   | 48.2%         |
+| Russian  | <0.01%                   | 69.3%         |
+| Turkish  | <0.01%                   | 53.0%         |
 
 ## Voita directionality ✅ RESOLVED
 
@@ -61,6 +77,17 @@ Using a single best head is a known limitation. Many papers either analyze all h
 - Required because GPT-2 is causal and can only attend to previous tokens
 
 This change means BERT and GPT-2 use methodologically distinct (and appropriate) probing directions.
+
+**Update (2026-01-20):** Added `voita_bert_leftward.py` which also tests leftward direction for BERT (rightmost → leftmost token). Results:
+
+| Language | Leftward Best Head | Layer, Head |
+|----------|-------------------|-------------|
+| English  | 31.6%             | L6, H11     |
+| German   | 23.1%             | L1, H2      |
+| Russian  | 39.4%             | L5, H10     |
+| Turkish  | 28.4%             | L5, H9      |
+
+This shows that direction matters significantly: leftward probing yields 23–39% single-head accuracy vs. near-zero for `nsubj → root`.
 
 ## Other possible checks (optional)
 
@@ -86,5 +113,17 @@ If you want a broader literature alignment section, you could mention:
 
 - [ ] Verify Russian BERT model (`deepvk/bert-base-uncased` vs `DeepPavlov/rubert-base-cased`)
 - [ ] Decide whether to report attention entropy explicitly
-- [ ] Run all analysis scripts to verify they work end-to-end
-- [ ] Re-run Voita analysis with new directionality (BERT results will change)
+
+## Completed (2026-01-20) ✅
+
+- [x] **Re-run Voita analysis with new directionality** — BERT results dropped to near-zero as expected
+- [x] **Add leftward BERT analysis** — `voita_bert_leftward.py` tests rightmost→leftmost direction (23–39% accuracy)
+- [x] **Add multihead analysis** — `voita_multihead.py` tests layer-averaged, max-pooled, and top-K metrics
+- [x] **Stimuli multihead analysis** — `analyze_stimuli_multihead.py` compares head selection strategies on experimental sentences
+
+**New output files:**
+- `results/leftward/bert_leftward_*.csv` — Leftward per-head accuracy (4 languages)
+- `results/multihead/bert_multihead_per_head_*.csv` — Per-head accuracy both directions
+- `results/multihead/bert_multihead_layer_metrics_*.csv` — Layer-aggregated metrics (averaged, max-pooled, top-K)
+- `results/multihead/bert_multihead_attention_scores_*.csv` — Raw attention statistics
+- `results/stimuli_multihead/*_multihead_stimuli_attention.csv` — Stimuli attention with multiple strategies
