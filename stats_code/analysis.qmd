@@ -248,7 +248,7 @@ russian_behavioral <- tribble(
   "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", NA, NA, "[Enter source]",
   "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", NA, NA, "[Enter source]",
   "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", NA, NA, "[Enter source]"
-) %>%
+) %>%h
   mutate(
     Language = "Russian",
     Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
