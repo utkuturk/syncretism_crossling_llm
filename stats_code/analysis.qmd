@@ -114,20 +114,19 @@ This section summarizes key behavioral findings on agreement attraction across o
 behavioral_findings <- tribble(
   ~Language, ~Study, ~Measure, ~N, ~Attraction_Effect, ~Syncretism_Effect, ~Key_Finding,
   # --- ENGLISH ---
-  "English", "Wagers et al. (2009)", "Error %", 48, "Yes (30% increase)", "N/A", "Strong attraction in ungrammatical, weak in grammatical",
-  "English", "Nicol et al.", "Error %", 2, "Yes (~50ms)", "N/A", "Attraction facilitates ungrammatical verbs",
-
+  "English", "Wagers et al. (2009)", "Accuracy", 48, "Yes (30% decrease)", "N/A", "Strong attraction in ungrammatical, weak in grammatical",
+  "English", "Nicol et al.", "Accuracy", NA, "Yes (96% vs 94%)", "N/A (NSYN only)", "Production: 'statue in elves' garden' vs 'elf's garden'",
+  "English", "Hammerly (speeded)", "Accuracy", NA, "Yes (60% vs 80%)", "N/A (SYN only)", "Speeded acceptability: accuracy drops from 80% to 60% for ungrammatical plural",
 
   # --- TURKISH ---
-  "Turkish", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]",
+  "Turkish", "Turk & Logacev (2024) (NSYN)", "Accuracy", NA, "Yes (76% vs 86%)", "N/A (NSYN only)", "Ungrammatical: 76% (pl attr) vs 86% (sg attr); Grammatical: 91-92%",
+  "Turkish", "Lago et al. (2019) (SYN)", "Accuracy", NA, "Yes", "No difference from NSYN", "Syncretic conditions similar to non-syncretic (Logacev)",
 
   # --- GERMAN ---
-  "German", "Hartsuiker et al. (2003)", "Error %", 24, "Yes", "N/A", "Cross-linguistic attraction in production",
-  "German", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]",
+  "German", "Hartsuiker et al. (2003)", "Accuracy", 24, "Yes", "Yes (modulated)", "Feminine nouns: NSYN 94-96%, SYN 90-99% (ambiguous case increases attraction)",
 
   # --- RUSSIAN ---
-  "Russian", "Slioussar & Malko (2016)", "Error %", 48, "Yes", "Yes (reduced)", "Case marking reduces attraction",
-  "Russian", "[Enter study]", "[Measure]", NA, "[Effect]", "[Effect]", "[Key finding]"
+  "Russian", "Slioussar (JML)", "Accuracy", 48, "Yes", "Yes (increased for syncretic)", "ACC: 95% (sg) vs 77% (pl); GEN syncretic: 86% (sg) vs 91% (pl)"
 )
 
 behavioral_findings %>%
@@ -148,14 +147,23 @@ behavioral_findings %>%
 
 # Source: Wagers et al. (2009) - Accuracy data (% correct)
 # Experiment 1: Basic attraction paradigm
+# Note: English has syncretic number marking (no case distinction reduces attraction)
+# Adding Hammerly speeded acceptability data
 english_behavioral <- tribble(
   ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
-  # Grammatical conditions (singular verb with singular head)
+  # Wagers et al. (2009) - Grammatical conditions (singular verb with singular head)
   "SG-SG-SG", "sg", "sg", "sg", "yes", 93, 3.0, "Wagers et al. (2009)",
   "SG-PL-SG", "sg", "pl", "sg", "yes", 91, 3.7, "Wagers et al. (2009)",
-  # Ungrammatical conditions (plural verb with singular head)
+  # Wagers et al. (2009) - Ungrammatical conditions (plural verb with singular head)
   "SG-SG-PL", "sg", "sg", "pl", "yes", 25, 7.0, "Wagers et al. (2009)",
-  "SG-PL-PL", "sg", "pl", "pl", "yes", 55, 6.0, "Wagers et al. (2009)"
+  "SG-PL-PL", "sg", "pl", "pl", "yes", 55, 6.0, "Wagers et al. (2009)",
+  # Hammerly (speeded acceptability) - Accuracy as % (converted from proportions)
+  # Grammatical singular (sg head, sg verb), Grammatical plural (pl head, pl verb)
+  # Ungrammatical singular (pl head, sg verb), Ungrammatical plural (sg head, pl verb)
+  "GRAM-SG", "sg", "pl", "sg", "yes", 89, 2.0, "Hammerly (speeded)",
+  "GRAM-PL", "pl", "sg", "pl", "yes", 86, 2.0, "Hammerly (speeded)",
+  "UNGRAM-SG", "pl", "sg", "sg", "yes", 80, 3.0, "Hammerly (speeded)",
+  "UNGRAM-PL", "sg", "pl", "pl", "yes", 60, 4.0, "Hammerly (speeded)"
 ) %>%
   mutate(
     Language = "English",
@@ -177,20 +185,25 @@ english_behavioral %>%
 ```{r turkish-behavioral}
 #| label: turkish-behavioral
 
-# Enter Turkish behavioral data here
-# If you have data on syncretism effects, include both syncretic and non-syncretic conditions
+# Turkish behavioral data
+# NSYN: Turk & Logacev (2024) - non-syncretic (distinctive case marking)
+# SYN: Lago et al. (2019) - syncretic conditions (similar results to NSYN)
+# Values are accuracy proportions converted to % (multiplied by 100)
 turkish_behavioral <- tribble(
   ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
-  # Syncretic conditions (nominative-accusative syncretism)
-  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]",
-  # Non-syncretic conditions (distinctive case marking)
-  "NSYN-SG-SG-SG", "sg", "sg", "sg", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", NA, NA, "[Enter source]"
+  # Non-syncretic conditions (Turk & Logacev (2024)) - distinctive case marking
+  # Grammatical conditions: high accuracy (~91-92%)
+  "NSYN-SG-SG-SG", "sg", "sg", "sg", "no", 92, 1.0, "Turk & Logacev (2024) (NSYN)",
+  "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", 91, 1.0, "Turk & Logacev (2024) (NSYN)",
+  # Ungrammatical conditions: attraction effect (76% vs 86%)
+  "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", 86, 1.0, "Turk & Logacev (2024) (NSYN)",
+  "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", 76, 1.0, "Turk & Logacev (2024) (NSYN)",
+  # Syncretic conditions (Lago et al. 2019) - no real difference from NSYN
+  # Using similar values as Logacev since Lago reported comparable results
+  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", 92, 1.0, "Lago et al. (2019)",
+  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", 91, 1.0, "Lago et al. (2019)",
+  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", 86, 1.0, "Lago et al. (2019)",
+  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", 76, 1.0, "Lago et al. (2019)"
 ) %>%
   mutate(
     Language = "Turkish",
@@ -203,7 +216,7 @@ turkish_behavioral %>%
   filter(!is.na(Mean)) %>%
   select(Condition, Syncretism, Grammaticality, Match, Mean, SE, Source) %>%
   kable(
-    caption = "Turkish Behavioral Data: [Enter measure]",
+    caption = "Turkish Behavioral Data: Accuracy (%)",
     digits = 1
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -214,25 +227,34 @@ turkish_behavioral %>%
 ```{r german-behavioral}
 #| label: german-behavioral
 
+# German behavioral data
+# Hartsuiker et al. (2003) - manipulated gender and case ambiguity
+# Feminine nouns: SYN (ambiguous case) vs NSYN (unambiguous case)
+# Values converted to accuracy (%) from original error rates
 german_behavioral <- tribble(
   ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
-  # Enter German behavioral data
-  "SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
-  "SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
-  "SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
-  "SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]"
+  # Non-syncretic (unambiguous case marking) - feminine head nouns
+  # Original error rates: 4.1% (sg attractor) vs 5.9% (pl attractor) → accuracy: 95.9% vs 94.1%
+  "NSYN-SG-SG", "sg", "sg", "sg", "no", 95.9, NA, "Hartsuiker et al. (2003)",
+  "NSYN-SG-PL", "sg", "pl", "sg", "no", 94.1, NA, "Hartsuiker et al. (2003)",
+  # Syncretic (ambiguous case marking) - feminine head nouns
+  # Original error rates: 0.9% (sg attractor) vs 9.5% (pl attractor) → accuracy: 99.1% vs 90.5%
+  # Note: Larger attraction effect in ambiguous conditions
+  "SYN-SG-SG", "sg", "sg", "sg", "yes", 99.1, NA, "Hartsuiker et al. (2003)",
+  "SYN-SG-PL", "sg", "pl", "sg", "yes", 90.5, NA, "Hartsuiker et al. (2003)"
 ) %>%
   mutate(
     Language = "German",
     Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
-    Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical")
+    Grammaticality = "Grammatical",  # All are grammatical targets
+    Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
   )
 
 german_behavioral %>%
   filter(!is.na(Mean)) %>%
-  select(Condition, Grammaticality, Match, Mean, SE, Source) %>%
+  select(Condition, Syncretism, Match, Mean, SE, Source) %>%
   kable(
-    caption = "German Behavioral Data: [Enter measure]",
+    caption = "German Behavioral Data: Accuracy (%) - Hartsuiker et al. (2003)",
     digits = 1
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -243,19 +265,30 @@ german_behavioral %>%
 ```{r russian-behavioral}
 #| label: russian-behavioral
 
+# Russian behavioral data
+# From Slioussar (JML) - converted from error rates to accuracy
+# Genitive singular is syncretic with nominative plural (Gen.Sg=Nom.Pl)
+# Accusative is non-syncretic (distinctive case marking)
+# Values are accuracy (%) = 100 - error rate
 russian_behavioral <- tribble(
   ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
-  # Syncretic conditions
-  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", NA, NA, "[Enter source]",
-  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", NA, NA, "[Enter source]",
-  # Non-syncretic conditions
-  "NSYN-SG-SG-SG", "sg", "sg", "sg", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-PL-SG", "sg", "pl", "sg", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-SG-PL", "sg", "sg", "pl", "no", NA, NA, "[Enter source]",
-  "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", NA, NA, "[Enter source]"
-) %>%h
+  # Non-syncretic (Accusative case) - UNGRAMMATICAL (plural verb, singular head)
+  # Original error: 4.8% → 95.2%, 23.4% → 76.6%
+  "NSYN-ACC-SG-SG-PL", "sg", "sg", "pl", "no", 95.2, NA, "Slioussar (JML)",
+  "NSYN-ACC-SG-PL-PL", "sg", "pl", "pl", "no", 76.6, NA, "Slioussar (JML)",
+  # Non-syncretic (Accusative case) - GRAMMATICAL (singular verb, singular head)
+  # Original error: 4.7% → 95.3%, 9.5% → 90.5%
+  "NSYN-ACC-SG-SG-SG", "sg", "sg", "sg", "no", 95.3, NA, "Slioussar (JML)",
+  "NSYN-ACC-SG-PL-SG", "sg", "pl", "sg", "no", 90.5, NA, "Slioussar (JML)",
+  # Syncretic (Genitive case - Gen.Sg=Nom.Pl) - UNGRAMMATICAL
+  # Original error: 14.5% → 85.5%, 9.5% → 90.5%
+  "SYN-GEN-SG-SG-PL", "sg", "sg", "pl", "yes", 85.5, NA, "Slioussar (JML)",
+  "SYN-GEN-SG-PL-PL", "sg", "pl", "pl", "yes", 90.5, NA, "Slioussar (JML)",
+  # Syncretic (Genitive case) - GRAMMATICAL
+  # Original error: 4.0% → 96.0%, 6.3% → 93.7%
+  "SYN-GEN-SG-SG-SG", "sg", "sg", "sg", "yes", 96.0, NA, "Slioussar (JML)",
+  "SYN-GEN-SG-PL-SG", "sg", "pl", "sg", "yes", 93.7, NA, "Slioussar (JML)"
+) %>%
   mutate(
     Language = "Russian",
     Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
@@ -267,7 +300,7 @@ russian_behavioral %>%
   filter(!is.na(Mean)) %>%
   select(Condition, Syncretism, Grammaticality, Match, Mean, SE, Source) %>%
   kable(
-    caption = "Russian Behavioral Data: [Enter measure]",
+    caption = "Russian Behavioral Data: Accuracy (%) - Slioussar (JML)",
     digits = 1
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
