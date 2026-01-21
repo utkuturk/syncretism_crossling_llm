@@ -112,30 +112,52 @@ This section summarizes key behavioral findings on agreement attraction across o
 # Russian: singular head conditions demonstrate that error rates are notably influenced by the case group and the syncretic nature of the dependent noun. Within the ungrammatical sentences of Table 5, the condition Sg-Sg(acc)+Pl (where the dependent is singular accusative) shows an error rate of 4.8%, while the Sg-Pl(acc)+Pl condition (plural accusative dependent) spikes to 23.4%. In the genitive group, the Sg-Sg(gen)+Pl condition—which features a syncretic dependent where the singular genitive form is morphologically identical to the nominative plural (Gen.Sg=Nom.Pl)—shows an error rate of 14.5%, whereas the Sg-Pl(gen)+Pl condition (plural genitive dependent) has a rate of 9.5%. Turning to the grammatical sentences in Table 6, the Sg-Sg(acc)+Sg and Sg-Pl(acc)+Sg conditions result in error rates of 4.7% and 9.5%, respectively. Finally, the genitive grammatical conditions show the lowest overall error for this set, with the syncretic Sg-Sg(gen)+Sg condition at 4.0% and the Sg-Pl(gen)+Sg condition at 6.3%.
 
 behavioral_findings <- tribble(
-  ~Language, ~Study, ~Measure, ~N, ~Attraction_Effect, ~Syncretism_Effect, ~Key_Finding,
-  # --- ENGLISH ---
-  "English", "Wagers et al. (2009)", "Accuracy", 48, "Yes (30% decrease)", "N/A", "Strong attraction in ungrammatical, weak in grammatical",
-  "English", "Nicol et al.", "Accuracy", NA, "Yes (96% vs 94%)", "N/A (NSYN only)", "Production: 'statue in elves' garden' vs 'elf's garden'",
-  "English", "Hammerly (speeded)", "Accuracy", NA, "Yes (60% vs 80%)", "N/A (SYN only)", "Speeded acceptability: accuracy drops from 80% to 60% for ungrammatical plural",
-
-  # --- TURKISH ---
-  "Turkish", "Turk & Logacev (2024) (NSYN)", "Accuracy", NA, "Yes (76% vs 86%)", "N/A (NSYN only)", "Ungrammatical: 76% (pl attr) vs 86% (sg attr); Grammatical: 91-92%",
-  "Turkish", "Lago et al. (2019) (SYN)", "Accuracy", NA, "Yes", "No difference from NSYN", "Syncretic conditions similar to non-syncretic (Logacev)",
-
-  # --- GERMAN ---
-  "German", "Hartsuiker et al. (2003)", "Accuracy", 24, "Yes", "Yes (modulated)", "Feminine nouns: NSYN 94-96%, SYN 90-99% (ambiguous case increases attraction)",
-
-  # --- RUSSIAN ---
-  "Russian", "Slioussar (JML)", "Accuracy", 48, "Yes", "Yes (increased for syncretic)", "ACC: 95% (sg) vs 77% (pl); GEN syncretic: 86% (sg) vs 91% (pl)"
+  ~Language, ~Studies, ~N, 
+  ~NSYN_Attraction, ~SYN_Attraction, ~Syncretism_Effect, 
+  ~Key_Finding,
+  
+  "English", 
+  "Nicol et al. (production, NSYN); Hammerly (speeded, SYN)", 
+  NA,
+  "2% error increase (4%→6% for pl attractor)", 
+  "20% error increase (20%→40% for pl attractor)",
+  "Syncretism amplifies attraction 10x",
+  "Syncretic conditions show massive attraction effect compared to non-syncretic baseline",
+  
+  "Turkish", 
+  "Turk & Logacev 2024 (ACC, NSYN); Lago et al. 2019 (GEN, SYN)", 
+  NA,
+  "10% error increase (14%→24% for pl attractor)", 
+  "~10% error increase (similar to NSYN)",
+  "No modulation",
+  "Syncretic genitive case shows similar attraction to non-syncretic accusative",
+  
+  "German", 
+  "Hartsuiker et al. 2003", 
+  24,
+  "1.8% error increase (4.1%→5.9% for pl attractor, unambiguous)",
+  "8.6% error increase (0.9%→9.5% for pl attractor, ambiguous)",
+  "Syncretism amplifies attraction ~5x",
+  "Case ambiguity (syncretism) substantially amplifies attraction effects",
+  
+  "Russian", 
+  "Slioussar (JML)", 
+  48,
+  "18.6% error increase (4.8%→23.4% for pl attractor in ACC)",
+  "Reversed: 14.5% error for syncretic sg.GEN vs 9.5% for pl.GEN",
+  "Syncretism creates reversed pattern",
+  "Syncretic sg.GEN (=NOM.PL morphology) triggers more errors than true plurals; attraction follows morphological form"
 )
 
 behavioral_findings %>%
   kable(
-    caption = "Summary of Human Agreement Attraction Studies",
-    col.names = c("Language", "Study", "Measure", "N", "Attraction Effect", "Syncretism Effect", "Key Finding")
+    caption = "Summary of Human Agreement Attraction Studies by Language",
+    col.names = c("Language", "Studies", "N", "Non-Syncretic Attraction", "Syncretic Attraction", "Syncretism Effect", "Key Finding")
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
-  column_spec(7, width = "25em")
+  column_spec(4, width = "12em") %>%
+  column_spec(5, width = "12em") %>%
+  column_spec(7, width = "28em")
 ```
 
 ## Detailed Behavioral Data by Condition
@@ -144,26 +166,28 @@ behavioral_findings %>%
 
 ```{r english-behavioral}
 #| label: english-behavioral
-
-# Source: Wagers et al. (2009) - Accuracy data (% correct)
-# Experiment 1: Basic attraction paradigm
-# Note: English has syncretic number marking (no case distinction reduces attraction)
-# Adding Hammerly speeded acceptability data
+# Source: Wagers et al. (2009), Hammerly (speeded), Nicol et al. (production)
+# Note: English subject-verb agreement is syncretic (no case marking on nouns)
+# Nicol et al. tested possessive constructions which ARE marked (non-syncretic)
 english_behavioral <- tribble(
   ~Condition, ~Head_Num, ~Attr_Num, ~Verb_Num, ~is_syn, ~Mean, ~SE, ~Source,
-  # Wagers et al. (2009) - Grammatical conditions (singular verb with singular head)
-  "SG-SG-SG", "sg", "sg", "sg", "yes", 93, 3.0, "Wagers et al. (2009)",
-  "SG-PL-SG", "sg", "pl", "sg", "yes", 91, 3.7, "Wagers et al. (2009)",
-  # Wagers et al. (2009) - Ungrammatical conditions (plural verb with singular head)
-  "SG-SG-PL", "sg", "sg", "pl", "yes", 25, 7.0, "Wagers et al. (2009)",
-  "SG-PL-PL", "sg", "pl", "pl", "yes", 55, 6.0, "Wagers et al. (2009)",
-  # Hammerly (speeded acceptability) - Accuracy as % (converted from proportions)
-  # Grammatical singular (sg head, sg verb), Grammatical plural (pl head, pl verb)
-  # Ungrammatical singular (pl head, sg verb), Ungrammatical plural (sg head, pl verb)
-  "GRAM-SG", "sg", "pl", "sg", "yes", 89, 2.0, "Hammerly (speeded)",
-  "GRAM-PL", "pl", "sg", "pl", "yes", 86, 2.0, "Hammerly (speeded)",
-  "UNGRAM-SG", "pl", "sg", "sg", "yes", 80, 3.0, "Hammerly (speeded)",
-  "UNGRAM-PL", "sg", "pl", "pl", "yes", 60, 4.0, "Hammerly (speeded)"
+  
+  # Nicol et al. (production) - NON-SYNCRETIC (possessive marking: elf's vs elves')
+  "SG-SG", "sg", "sg", "sg", "no", 96, NA, "Nicol et al. (production) (NSYN)",
+  "SG-PL", "sg", "pl", "sg", "no", 94, NA, "Nicol et al. (production) (NSYN)",
+  
+  # Wagers et al. (2009) - SYNCRETIC - Grammatical conditions
+  "SG-SG-SG", "sg", "sg", "sg", "yes", 93, 3.0, "Wagers et al. (2009) (SYN)",
+  "SG-PL-SG", "sg", "pl", "sg", "yes", 91, 3.7, "Wagers et al. (2009) (SYN)",
+  # Wagers et al. (2009) - SYNCRETIC - Ungrammatical conditions
+  "SG-SG-PL", "sg", "sg", "pl", "yes", 25, 7.0, "Wagers et al. (2009) (SYN)",
+  "SG-PL-PL", "sg", "pl", "pl", "yes", 55, 6.0, "Wagers et al. (2009) (SYN)",
+  
+  # Hammerly (speeded acceptability) - SYNCRETIC
+  "GRAM-SG", "sg", "pl", "sg", "yes", 89, 2.0, "Hammerly (speeded) (SYN)",
+  "GRAM-PL", "pl", "sg", "pl", "yes", 86, 2.0, "Hammerly (speeded) (SYN)",
+  "UNGRAM-SG", "pl", "sg", "sg", "yes", 80, 3.0, "Hammerly (speeded) (SYN)",
+  "UNGRAM-PL", "sg", "pl", "pl", "yes", 60, 4.0, "Hammerly (speeded) (SYN)"
 ) %>%
   mutate(
     Language = "English",
@@ -172,9 +196,9 @@ english_behavioral <- tribble(
   )
 
 english_behavioral %>%
-  select(Condition, Grammaticality, Match, Mean, SE, Source) %>%
+  select(Condition, Grammaticality, Match, is_syn, Mean, SE, Source) %>%
   kable(
-    caption = "English Behavioral Data: Accuracy (% correct)",
+    caption = "English Behavioral Data: Accuracy (% correct) - Syncretic vs Non-Syncretic",
     digits = 1
   ) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -200,10 +224,10 @@ turkish_behavioral <- tribble(
   "NSYN-SG-PL-PL", "sg", "pl", "pl", "no", 76, 1.0, "Turk & Logacev (2024) (NSYN)",
   # Syncretic conditions (Lago et al. 2019) - no real difference from NSYN
   # Using similar values as Logacev since Lago reported comparable results
-  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", 92, 1.0, "Lago et al. (2019)",
-  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", 91, 1.0, "Lago et al. (2019)",
-  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", 86, 1.0, "Lago et al. (2019)",
-  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", 76, 1.0, "Lago et al. (2019)"
+  "SYN-SG-SG-SG", "sg", "sg", "sg", "yes", 92, 1.0, "Lago et al. (2019) (SYN)",
+  "SYN-SG-PL-SG", "sg", "pl", "sg", "yes", 91, 1.0, "Lago et al. (2019) (SYN)",
+  "SYN-SG-SG-PL", "sg", "sg", "pl", "yes", 86, 1.0, "Lago et al. (2019) (SYN)",
+  "SYN-SG-PL-PL", "sg", "pl", "pl", "yes", 76, 1.0, "Lago et al. (2019) (SYN)"
 ) %>%
   mutate(
     Language = "Turkish",
@@ -531,16 +555,70 @@ result_paths <- list(
   surprisal_russian = "../llm_code/russian_attention/results/russian_surprisal_results.csv"
 )
 
-# Function to safely load CSV
-safe_read <- function(path, name) {
+# Function to safely load CSV with optional language tag
+safe_read <- function(path, name, add_lg = NULL) {
   if (file.exists(path)) {
     df <- read_csv(path, show_col_types = FALSE)
+    # Add language column if not present and add_lg is specified
+    if (!is.null(add_lg) && !"lg" %in% names(df)) {
+      df <- df %>% mutate(lg = add_lg)
+    }
     cat("Loaded", name, ":", nrow(df), "rows\n")
     return(df)
   } else {
     cat("Not found:", name, "\n")
     return(tibble())
   }
+}
+
+# Standardize English attention/surprisal columns to match Turkish/Russian format
+standardize_english <- function(df) {
+  if (nrow(df) == 0 || !"NP_Number" %in% names(df)) return(df)
+
+  df %>%
+    mutate(
+      lg = "english",
+      # NP_Number is the attractor number
+      attn = case_when(
+        tolower(NP_Number) == "singular" ~ "sg",
+        tolower(NP_Number) == "plural" ~ "pl",
+        TRUE ~ tolower(NP_Number)
+      ),
+      # Auxiliary encodes verb number
+      verbn = case_when(
+        tolower(Auxiliary) == "is" ~ "sg",
+        tolower(Auxiliary) == "are" ~ "pl",
+        tolower(Auxiliary) == "was" ~ "sg",
+        tolower(Auxiliary) == "were" ~ "pl",
+        TRUE ~ tolower(Auxiliary)
+      ),
+      # source_file encodes syncretism
+      syn = ifelse(source_file == "syn", 1, 0),
+      # Head is always singular in these stimuli
+      headn = "sg",
+      # Standardize item column name
+      item = Item
+    ) %>%
+    select(-Item, -NP_Number, -Auxiliary, -source_file)
+}
+
+# Standardize German attention/surprisal columns to match Turkish/Russian format
+standardize_german <- function(df) {
+  if (nrow(df) == 0 || !"attractor" %in% names(df)) return(df)
+
+  df %>%
+    mutate(
+      lg = "german",
+      # attractor column is already sg/pl
+      attn = attractor,
+      # verb column is already sg/pl
+      verbn = verb,
+      # case "amb" means syncretic (ambiguous)
+      syn = ifelse(case == "amb", 1, 0),
+      # Head is always singular in these stimuli
+      headn = "sg"
+    ) %>%
+    select(-attractor, -verb, -case)
 }
 
 # Load available results
@@ -560,15 +638,15 @@ leftward_results <- bind_rows(
 
 attention_results <- bind_rows(
   safe_read(result_paths$attention_turkish, "attention_turkish"),
-  safe_read(result_paths$attention_english, "attention_english"),
-  safe_read(result_paths$attention_german, "attention_german"),
+  safe_read(result_paths$attention_english, "attention_english") %>% standardize_english(),
+  safe_read(result_paths$attention_german, "attention_german") %>% standardize_german(),
   safe_read(result_paths$attention_russian, "attention_russian")
 )
 
 surprisal_results <- bind_rows(
   safe_read(result_paths$surprisal_turkish, "surprisal_turkish"),
-  safe_read(result_paths$surprisal_english, "surprisal_english"),
-  safe_read(result_paths$surprisal_german, "surprisal_german"),
+  safe_read(result_paths$surprisal_english, "surprisal_english") %>% standardize_english(),
+  safe_read(result_paths$surprisal_german, "surprisal_german") %>% standardize_german(),
   safe_read(result_paths$surprisal_russian, "surprisal_russian")
 )
 ```
@@ -584,13 +662,12 @@ surprisal_results <- bind_rows(
 #| fig-width: 10
 #| fig-height: 6
 
-if (nrow(multihead_results) > 0) {
   # Plot per-head accuracy heatmap
   multihead_results %>%
     ggplot(aes(x = head, y = layer, fill = accuracy)) +
     geom_tile() +
-    scale_fill_viridis_c(option = "plasma", limits = c(0, 1)) +
-    facet_grid(language ~ direction) +
+    scale_fill_viridis_c(option = "plasma", limits = c(0, 0.5)) +
+    facet_grid(direction ~ language) +
     labs(
       title = "Per-Head Accuracy for nsubj-root Prediction",
       x = "Head",
@@ -599,9 +676,6 @@ if (nrow(multihead_results) > 0) {
     ) +
     theme_paper() +
     coord_equal()
-} else {
-  cat("Multihead results not yet available. Run the SLURM jobs first.\n")
-}
 ```
 
 ### Comparison: Leftward vs. Standard Direction
@@ -611,7 +685,7 @@ if (nrow(multihead_results) > 0) {
 #| fig-width: 8
 #| fig-height: 5
 
-if (nrow(multihead_results) > 0) {
+
   direction_summary <- multihead_results %>%
     group_by(language, direction) %>%
     summarise(
@@ -635,10 +709,7 @@ if (nrow(multihead_results) > 0) {
       fill = "Direction"
     ) +
     theme_paper() +
-    scale_y_continuous(limits = c(0, 1), labels = scales::percent)
-} else {
-  cat("Results not yet available.\n")
-}
+    scale_y_continuous(limits = c(0, 0.5), labels = scales::percent)
 ```
 
 ## Attention Analysis on Experimental Stimuli
@@ -650,7 +721,6 @@ if (nrow(multihead_results) > 0) {
 #| fig-width: 10
 #| fig-height: 6
 
-if (nrow(attention_results) > 0 && "attention_diff" %in% names(attention_results)) {
 
   # Prepare data with condition parsing
   att_plot_data <- attention_results %>%
@@ -665,13 +735,11 @@ if (nrow(attention_results) > 0 && "attention_diff" %in% names(attention_results
       Model = toupper(model_type)
     )
 
-  # Check if condition columns exist
-  if ("attr_num" %in% names(att_plot_data) && "verb_num" %in% names(att_plot_data)) {
     att_plot_data <- att_plot_data %>%
       mutate(
-        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
-        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
-        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+        Match = ifelse(headn== attn, "Match", "Mismatch"),
+        Grammaticality = ifelse(headn == verbn, "Grammatical", "Ungrammatical"),
+        Syncretism = ifelse(syn == 1, "Syncretic", "Non-syncretic")
       )
 
     # Plot attention difference by condition
@@ -701,12 +769,7 @@ if (nrow(attention_results) > 0 && "attention_diff" %in% names(attention_results
         color = "Syncretism"
       ) +
       theme_paper()
-  } else {
-    cat("Condition columns not found in attention results.\n")
-  }
-} else {
-  cat("Attention results not yet available or missing attention_diff column.\n")
-}
+
 ```
 
 ### Attention Entropy by Condition
@@ -716,27 +779,6 @@ if (nrow(attention_results) > 0 && "attention_diff" %in% names(attention_results
 #| fig-width: 10
 #| fig-height: 6
 
-if (nrow(attention_results) > 0 && "attention_entropy" %in% names(attention_results)) {
-
-  att_plot_data <- attention_results %>%
-    mutate(
-      Language = case_when(
-        lg == "turkish" ~ "Turkish",
-        lg == "russian" ~ "Russian",
-        lg == "english" ~ "English",
-        lg == "german" ~ "German",
-        TRUE ~ lg
-      ),
-      Model = toupper(model_type)
-    )
-
-  if ("attr_num" %in% names(att_plot_data) && "verb_num" %in% names(att_plot_data)) {
-    att_plot_data <- att_plot_data %>%
-      mutate(
-        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
-        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
-        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
-      )
 
     entropy_summary <- att_plot_data %>%
       group_by(Language, Model, Match, Grammaticality, Syncretism) %>%
@@ -763,10 +805,6 @@ if (nrow(attention_results) > 0 && "attention_entropy" %in% names(attention_resu
         color = "Syncretism"
       ) +
       theme_paper()
-  }
-} else {
-  cat("Entropy results not yet available.\n")
-}
 ```
 
 ## Surprisal Analysis
@@ -778,7 +816,7 @@ if (nrow(attention_results) > 0 && "attention_entropy" %in% names(attention_resu
 #| fig-width: 10
 #| fig-height: 6
 
-if (nrow(surprisal_results) > 0 && "surprisal" %in% names(surprisal_results)) {
+
 
   surp_plot_data <- surprisal_results %>%
     mutate(
@@ -792,12 +830,11 @@ if (nrow(surprisal_results) > 0 && "surprisal" %in% names(surprisal_results)) {
       Model = toupper(model_type)
     )
 
-  if ("attr_num" %in% names(surp_plot_data) && "verb_num" %in% names(surp_plot_data)) {
     surp_plot_data <- surp_plot_data %>%
       mutate(
-        Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
-        Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
-        Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+        Match = ifelse(headn == attn, "Match", "Mismatch"),
+        Grammaticality = ifelse(headn == verbn, "Grammatical", "Ungrammatical"),
+        Syncretism = ifelse(syn == 1, "Syncretic", "Non-syncretic")
       )
 
     surp_summary <- surp_plot_data %>%
@@ -825,10 +862,7 @@ if (nrow(surprisal_results) > 0 && "surprisal" %in% names(surprisal_results)) {
         color = "Syncretism"
       ) +
       theme_paper()
-  }
-} else {
-  cat("Surprisal results not yet available.\n")
-}
+
 ```
 
 # Comparison: LLM Measures vs. Human Attraction
@@ -845,7 +879,6 @@ This section compares each LLM measure to human behavioral findings on agreement
 # Combine behavioral and LLM data for comparison
 # This assumes both datasets are available and properly formatted
 
-if (nrow(attention_results) > 0) {
 
   # Calculate LLM attraction effects (mismatch - match)
   llm_attention_effects <- attention_results %>%
@@ -859,9 +892,9 @@ if (nrow(attention_results) > 0) {
         TRUE ~ lg
       ),
       Model = toupper(model_type),
-      Match = ifelse(head_num == attr_num, "Match", "Mismatch"),
-      Grammaticality = ifelse(head_num == verb_num, "Grammatical", "Ungrammatical"),
-      Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+      Match = ifelse(headn == attn, "Match", "Mismatch"),
+      Grammaticality = ifelse(headn == verbn, "Grammatical", "Ungrammatical"),
+      Syncretism = ifelse(syn == 1, "Syncretic", "Non-syncretic")
     ) %>%
     group_by(Language, Model, Grammaticality, Syncretism, Match) %>%
     summarise(mean_att = mean(attention_diff, na.rm = TRUE), .groups = "drop") %>%
@@ -872,15 +905,24 @@ if (nrow(attention_results) > 0) {
       measure = "Attention Diff"
     )
 
-  # For now, use English behavioral as example
-  human_attraction_effects <- english_behavioral %>%
+  # Combine all four languages' behavioral data
+  human_attraction_effects <- bind_rows(
+    english_behavioral,
+    turkish_behavioral,
+    german_behavioral,
+    russian_behavioral
+  ) %>%
+    mutate(
+      Match = ifelse(Head_Num == Attr_Num, "Match", "Mismatch"),
+      Grammaticality = ifelse(Head_Num == Verb_Num, "Grammatical", "Ungrammatical"),
+      Syncretism = ifelse(is_syn == "yes", "Syncretic", "Non-syncretic")
+    ) %>%
     filter(!is.na(Mean)) %>%
-    group_by(Grammaticality, Match) %>%
+    group_by(Language, Grammaticality, Match, Syncretism) %>%
     summarise(mean_val = mean(Mean), .groups = "drop") %>%
     pivot_wider(names_from = Match, values_from = mean_val) %>%
     mutate(
-      attraction_effect = Match - Mismatch,  # For accuracy: Match > Mismatch means attraction
-      Language = "English",
+      attraction_effect = abs(Match - Mismatch),  # For accuracy: Match > Mismatch means attraction
       source = "Human",
       measure = "Accuracy (%)"
     )
@@ -900,8 +942,8 @@ if (nrow(attention_results) > 0) {
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
   p2 <- human_attraction_effects %>%
-    ggplot(aes(x = Language, y = attraction_effect, fill = "Human")) +
-    geom_col() +
+    ggplot(aes(x = Language, y = attraction_effect, fill = Syncretism)) +
+    geom_col(position = "dodge") +
     geom_hline(yintercept = 0, linetype = "dashed") +
     facet_wrap(~Grammaticality) +
     labs(
@@ -913,10 +955,10 @@ if (nrow(attention_results) > 0) {
     guides(fill = "none")
 
   p1 / p2 + plot_layout(heights = c(2, 1))
+  
+  
+  ## TODO: repeat the production results in both grammatical and ungrammatical. 
 
-} else {
-  cat("Results not yet available for comparison.\n")
-}
 ```
 
 ## Entropy vs. Human Attraction
