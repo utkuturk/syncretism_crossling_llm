@@ -103,12 +103,19 @@ This section summarizes key behavioral findings on agreement attraction across o
 # Enter behavioral findings here
 # Measure can be: "RT" (reading time), "Error" (error rate %), or "SPR" (self-paced reading)
 
+# NSYN: Nicol et al. tested bunch of things, including 'the statue in elves' garden...' vs. 'the statue in elf's garden...' the error rates are low as 4 percent and 6 percent. unfortauntely this was in production. SYN: Hammerly recently did a speeded acceptability task and found Accuracy 0.89 (0.02), 0.86 (0.02), 0.80 (0.03), 0.60 (0.04) for grammatical singular, grammatical plural, ungrammatical singular, ungrammatical plural conditions. 
+
+# NSYN: TurkLogacev did turkish (for ungrammatil plural and singular: M = 0.76, SE = 0.01 and their counterparts with singular attractors M = 0.86, SE=0.01. For grmamatical ones(M = 0.92 and 0.91, SE = 0.01 and 0.01, for singular and plural attractors respectively). SYN: Lago et al. 2019 did turkish with syncretic things. no real difference from TurkLogacev.
+
+# German: Hartsuiker et al. (2003) manipulated gender and case ambiguity in the article system. Feminine nouns showns SYN and NSYN conditions depending on the case marking. For feminine head nouns, agreement error rates were M = 4.1% and 5.9% in unambiguous conditions, and M = 0.9% and 9.5% in ambiguous conditions (singular vs. plural attractors). 
+
+# Russian: singular head conditions demonstrate that error rates are notably influenced by the case group and the syncretic nature of the dependent noun. Within the ungrammatical sentences of Table 5, the condition Sg-Sg(acc)+Pl (where the dependent is singular accusative) shows an error rate of 4.8%, while the Sg-Pl(acc)+Pl condition (plural accusative dependent) spikes to 23.4%. In the genitive group, the Sg-Sg(gen)+Pl condition—which features a syncretic dependent where the singular genitive form is morphologically identical to the nominative plural (Gen.Sg=Nom.Pl)—shows an error rate of 14.5%, whereas the Sg-Pl(gen)+Pl condition (plural genitive dependent) has a rate of 9.5%. Turning to the grammatical sentences in Table 6, the Sg-Sg(acc)+Sg and Sg-Pl(acc)+Sg conditions result in error rates of 4.7% and 9.5%, respectively. Finally, the genitive grammatical conditions show the lowest overall error for this set, with the syncretic Sg-Sg(gen)+Sg condition at 4.0% and the Sg-Pl(gen)+Sg condition at 6.3%.
+
 behavioral_findings <- tribble(
   ~Language, ~Study, ~Measure, ~N, ~Attraction_Effect, ~Syncretism_Effect, ~Key_Finding,
   # --- ENGLISH ---
   "English", "Wagers et al. (2009)", "Error %", 48, "Yes (30% increase)", "N/A", "Strong attraction in ungrammatical, weak in grammatical",
-  "English", "Lago et al. (2015)", "RT (ms)", 64, "Yes (~50ms)", "N/A", "Attraction facilitates ungrammatical verbs",
-  "English", "Dillon et al. (2013)", "RT (ms)", 40, "Yes", "N/A", "Attraction in agreement but not reflexives",
+  "English", "Nicol et al.", "Error %", 2, "Yes (~50ms)", "N/A", "Attraction facilitates ungrammatical verbs",
 
 
   # --- TURKISH ---
